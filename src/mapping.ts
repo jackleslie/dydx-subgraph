@@ -77,7 +77,7 @@ export function handleOwnershipTransferred(
 }
 
 export function handleLogIndexUpdate(event: LogIndexUpdateEvent): void {
-  let entity = new LogIndexUpdate(event.params.market);
+  let entity = new LogIndexUpdate(event.params.market.toString());
   entity.market = event.params.market;
   entity.index_borrow = event.params.index.borrow;
   entity.index_supply = event.params.index.supply;
