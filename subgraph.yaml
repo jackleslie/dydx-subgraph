@@ -1,0 +1,98 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Contract
+    network: mainnet
+    source:
+      address: "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e"
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.2
+      language: wasm/assemblyscript
+      entities:
+        - LogOperatorSet
+        - OwnershipTransferred
+        - LogIndexUpdate
+        - LogOperation
+        - LogDeposit
+        - LogWithdraw
+        - LogTransfer
+        - LogBuy
+        - LogSell
+        - LogTrade
+        - LogCall
+        - LogLiquidate
+        - LogVaporize
+        - LogWithdrawExcessTokens
+        - LogAddMarket
+        - LogSetIsClosing
+        - LogSetPriceOracle
+        - LogSetInterestSetter
+        - LogSetMarginPremium
+        - LogSetSpreadPremium
+        - LogSetMarginRatio
+        - LogSetLiquidationSpread
+        - LogSetEarningsRate
+        - LogSetMinBorrowedValue
+        - LogSetGlobalOperator
+        - LogOperatorSet1
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: LogOperatorSet(address,address,bool)
+          handler: handleLogOperatorSet
+        - event: OwnershipTransferred(address,address)
+          handler: handleOwnershipTransferred
+        - event: LogIndexUpdate(uint256,tuple)
+          handler: handleLogIndexUpdate
+        - event: LogOperation(address)
+          handler: handleLogOperation
+        - event: LogDeposit(address,uint256,uint256,tuple,address)
+          handler: handleLogDeposit
+        - event: LogWithdraw(address,uint256,uint256,tuple,address)
+          handler: handleLogWithdraw
+        - event: LogTransfer(address,uint256,address,uint256,uint256,tuple,tuple)
+          handler: handleLogTransfer
+        - event: LogBuy(address,uint256,uint256,uint256,tuple,tuple,address)
+          handler: handleLogBuy
+        - event: LogSell(address,uint256,uint256,uint256,tuple,tuple,address)
+          handler: handleLogSell
+        - event: LogTrade(address,uint256,address,uint256,uint256,uint256,tuple,tuple,tuple,tuple,address)
+          handler: handleLogTrade
+        - event: LogCall(address,uint256,address)
+          handler: handleLogCall
+        - event: LogLiquidate(address,uint256,address,uint256,uint256,uint256,tuple,tuple,tuple,tuple)
+          handler: handleLogLiquidate
+        - event: LogVaporize(address,uint256,address,uint256,uint256,uint256,tuple,tuple,tuple)
+          handler: handleLogVaporize
+        - event: LogWithdrawExcessTokens(address,uint256)
+          handler: handleLogWithdrawExcessTokens
+        - event: LogAddMarket(uint256,address)
+          handler: handleLogAddMarket
+        - event: LogSetIsClosing(uint256,bool)
+          handler: handleLogSetIsClosing
+        - event: LogSetPriceOracle(uint256,address)
+          handler: handleLogSetPriceOracle
+        - event: LogSetInterestSetter(uint256,address)
+          handler: handleLogSetInterestSetter
+        - event: LogSetMarginPremium(uint256,tuple)
+          handler: handleLogSetMarginPremium
+        - event: LogSetSpreadPremium(uint256,tuple)
+          handler: handleLogSetSpreadPremium
+        - event: LogSetMarginRatio(tuple)
+          handler: handleLogSetMarginRatio
+        - event: LogSetLiquidationSpread(tuple)
+          handler: handleLogSetLiquidationSpread
+        - event: LogSetEarningsRate(tuple)
+          handler: handleLogSetEarningsRate
+        - event: LogSetMinBorrowedValue(tuple)
+          handler: handleLogSetMinBorrowedValue
+        - event: LogSetGlobalOperator(address,bool)
+          handler: handleLogSetGlobalOperator
+        - event: LogOperatorSet(address,address,bool)
+          handler: handleLogOperatorSet1
+      file: ./src/mapping.ts
