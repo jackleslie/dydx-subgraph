@@ -49,5 +49,5 @@ dataSources:
           file: ./abis/Expiry.json
       eventHandlers:
         - event: ExpirySet(address,uint256,uint256,uint32)
-          handler: handleEventSet
+          handler: handleExpirySet
       file: ./src/expiry.ts

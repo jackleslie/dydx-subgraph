@@ -4,7 +4,7 @@ import {
   LogBuy,
   LogSell
 } from "../generated/SoloMargin/SoloMargin";
-import { Index, Market, Buy, Sell } from "../generated/schema";
+import { Index, Market, Buy, Sell, Expiry } from "../generated/schema";
 
 export function handleLogIndexUpdate(event: LogIndexUpdate): void {
   let entity = new Index(event.params.market.toString());
@@ -40,6 +40,15 @@ export function handleLogBuy(event: LogBuy): void {
   entity.makerUpdate_newPar_value = event.params.makerUpdate.newPar.value;
   entity.exchangeWrapper = event.params.exchangeWrapper;
   entity.timestamp = event.block.timestamp;
+
+  let expiryId =
+    event.params.accountOwner.toString() +
+    "-" +
+    event.params.accountNumber.toString() +
+    "-" +
+    event.params.takerMarket.toString();
+  let expiry = Expiry.load(expiryId);
+  entity.expires = expiry.time.toString();
   entity.save();
 }
 
@@ -61,5 +70,14 @@ export function handleLogSell(event: LogSell): void {
   entity.makerUpdate_newPar_value = event.params.makerUpdate.newPar.value;
   entity.exchangeWrapper = event.params.exchangeWrapper;
   entity.timestamp = event.block.timestamp;
+
+  let expiryId =
+    event.params.accountOwner.toString() +
+    "-" +
+    event.params.accountNumber.toString() +
+    "-" +
+    event.params.takerMarket.toString();
+  let expiry = Expiry.load(expiryId);
+  entity.expires = expiry.time.toString();
   entity.save();
 }
