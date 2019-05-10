@@ -328,9 +328,7 @@ export function handleLogWithdrawExcessTokens(
 }
 
 export function handleLogAddMarket(event: LogAddMarketEvent): void {
-  let entity = new LogAddMarket(
-    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
-  );
+  let entity = new LogAddMarket(event.params.marketId.toString());
   entity.marketId = event.params.marketId;
   entity.token = event.params.token;
   entity.save();
