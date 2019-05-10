@@ -3,7 +3,7 @@ import { Expiry } from "../generated/schema";
 
 export function handleExpirySet(event: ExpirySet): void {
   let entity = new Expiry(
-    event.params.owner.toString() +
+    event.params.owner.toHexString() +
       "-" +
       event.params.number.toString() +
       "-" +

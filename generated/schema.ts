@@ -282,13 +282,21 @@ export class Buy extends Entity {
     this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get expires(): string {
+  get expires(): BigInt | null {
     let value = this.get("expires");
-    return value.toString();
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set expires(value: string) {
-    this.set("expires", Value.fromString(value));
+  set expires(value: BigInt | null) {
+    if (value === null) {
+      this.unset("expires");
+    } else {
+      this.set("expires", Value.fromBigInt(value as BigInt));
+    }
   }
 }
 
@@ -448,13 +456,21 @@ export class Sell extends Entity {
     this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get expires(): string {
+  get expires(): BigInt | null {
     let value = this.get("expires");
-    return value.toString();
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set expires(value: string) {
-    this.set("expires", Value.fromString(value));
+  set expires(value: BigInt | null) {
+    if (value === null) {
+      this.unset("expires");
+    } else {
+      this.set("expires", Value.fromBigInt(value as BigInt));
+    }
   }
 }
 

@@ -42,13 +42,17 @@ export function handleLogBuy(event: LogBuy): void {
   entity.timestamp = event.block.timestamp;
 
   let expiryId =
-    event.params.accountOwner.toString() +
+    event.params.accountOwner.toHexString() +
     "-" +
     event.params.accountNumber.toString() +
     "-" +
     event.params.takerMarket.toString();
   let expiry = Expiry.load(expiryId);
-  entity.expires = expiry.time.toString();
+  if (expiry == null) {
+    entity.expires = null;
+  } else {
+    entity.expires = expiry.time;
+  }
   entity.save();
 }
 
@@ -72,12 +76,16 @@ export function handleLogSell(event: LogSell): void {
   entity.timestamp = event.block.timestamp;
 
   let expiryId =
-    event.params.accountOwner.toString() +
+    event.params.accountOwner.toHexString() +
     "-" +
     event.params.accountNumber.toString() +
     "-" +
     event.params.takerMarket.toString();
   let expiry = Expiry.load(expiryId);
-  entity.expires = expiry.time.toString();
+  if (expiry == null) {
+    entity.expires = null;
+  } else {
+    entity.expires = expiry.time;
+  }
   entity.save();
 }
