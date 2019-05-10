@@ -11,3 +11,37 @@ type Index @entity {
   supply: BigInt! # uint96
   lastUpdate: BigInt! # uint32
 }
+
+type Buy @entity {
+  id: ID!
+  accountOwner: Bytes! # address
+  accountNumber: BigInt! # uint256
+  takerMarket: BigInt! # uint256
+  makerMarket: BigInt! # uint256
+  takerUpdate_deltaWei_sign: Boolean! # bool
+  takerUpdate_deltaWei_value: BigInt! # uint256
+  takerUpdate_newPar_sign: Boolean! # bool
+  takerUpdate_newPar_value: BigInt! # uint128
+  makerUpdate_deltaWei_sign: Boolean! # bool
+  makerUpdate_deltaWei_value: BigInt! # uint256
+  makerUpdate_newPar_sign: Boolean! # bool
+  makerUpdate_newPar_value: BigInt! # uint128
+  exchangeWrapper: Bytes! # address
+}
+
+type Sell @entity {
+  id: ID!
+  accountOwner: Bytes! # address
+  accountNumber: BigInt! # uint256
+  takerMarket: BigInt! # uint256
+  makerMarket: BigInt! # uint256
+  takerUpdate_deltaWei_sign: Boolean! # bool
+  takerUpdate_deltaWei_value: BigInt! # uint256
+  takerUpdate_newPar_sign: Boolean! # bool
+  takerUpdate_newPar_value: BigInt! # uint128
+  makerUpdate_deltaWei_sign: Boolean! # bool
+  makerUpdate_deltaWei_value: BigInt! # uint256
+  makerUpdate_newPar_sign: Boolean! # bool
+  makerUpdate_newPar_value: BigInt! # uint128
+  exchangeWrapper: Bytes! # address
+}

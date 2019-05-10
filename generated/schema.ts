@@ -125,3 +125,299 @@ export class Index extends Entity {
     this.set("lastUpdate", Value.fromBigInt(value));
   }
 }
+
+export class Buy extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Buy entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Buy entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Buy", id.toString(), this);
+  }
+
+  static load(id: string): Buy | null {
+    return store.get("Buy", id) as Buy | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get accountOwner(): Bytes {
+    let value = this.get("accountOwner");
+    return value.toBytes();
+  }
+
+  set accountOwner(value: Bytes) {
+    this.set("accountOwner", Value.fromBytes(value));
+  }
+
+  get accountNumber(): BigInt {
+    let value = this.get("accountNumber");
+    return value.toBigInt();
+  }
+
+  set accountNumber(value: BigInt) {
+    this.set("accountNumber", Value.fromBigInt(value));
+  }
+
+  get takerMarket(): BigInt {
+    let value = this.get("takerMarket");
+    return value.toBigInt();
+  }
+
+  set takerMarket(value: BigInt) {
+    this.set("takerMarket", Value.fromBigInt(value));
+  }
+
+  get makerMarket(): BigInt {
+    let value = this.get("makerMarket");
+    return value.toBigInt();
+  }
+
+  set makerMarket(value: BigInt) {
+    this.set("makerMarket", Value.fromBigInt(value));
+  }
+
+  get takerUpdate_deltaWei_sign(): boolean {
+    let value = this.get("takerUpdate_deltaWei_sign");
+    return value.toBoolean();
+  }
+
+  set takerUpdate_deltaWei_sign(value: boolean) {
+    this.set("takerUpdate_deltaWei_sign", Value.fromBoolean(value));
+  }
+
+  get takerUpdate_deltaWei_value(): BigInt {
+    let value = this.get("takerUpdate_deltaWei_value");
+    return value.toBigInt();
+  }
+
+  set takerUpdate_deltaWei_value(value: BigInt) {
+    this.set("takerUpdate_deltaWei_value", Value.fromBigInt(value));
+  }
+
+  get takerUpdate_newPar_sign(): boolean {
+    let value = this.get("takerUpdate_newPar_sign");
+    return value.toBoolean();
+  }
+
+  set takerUpdate_newPar_sign(value: boolean) {
+    this.set("takerUpdate_newPar_sign", Value.fromBoolean(value));
+  }
+
+  get takerUpdate_newPar_value(): BigInt {
+    let value = this.get("takerUpdate_newPar_value");
+    return value.toBigInt();
+  }
+
+  set takerUpdate_newPar_value(value: BigInt) {
+    this.set("takerUpdate_newPar_value", Value.fromBigInt(value));
+  }
+
+  get makerUpdate_deltaWei_sign(): boolean {
+    let value = this.get("makerUpdate_deltaWei_sign");
+    return value.toBoolean();
+  }
+
+  set makerUpdate_deltaWei_sign(value: boolean) {
+    this.set("makerUpdate_deltaWei_sign", Value.fromBoolean(value));
+  }
+
+  get makerUpdate_deltaWei_value(): BigInt {
+    let value = this.get("makerUpdate_deltaWei_value");
+    return value.toBigInt();
+  }
+
+  set makerUpdate_deltaWei_value(value: BigInt) {
+    this.set("makerUpdate_deltaWei_value", Value.fromBigInt(value));
+  }
+
+  get makerUpdate_newPar_sign(): boolean {
+    let value = this.get("makerUpdate_newPar_sign");
+    return value.toBoolean();
+  }
+
+  set makerUpdate_newPar_sign(value: boolean) {
+    this.set("makerUpdate_newPar_sign", Value.fromBoolean(value));
+  }
+
+  get makerUpdate_newPar_value(): BigInt {
+    let value = this.get("makerUpdate_newPar_value");
+    return value.toBigInt();
+  }
+
+  set makerUpdate_newPar_value(value: BigInt) {
+    this.set("makerUpdate_newPar_value", Value.fromBigInt(value));
+  }
+
+  get exchangeWrapper(): Bytes {
+    let value = this.get("exchangeWrapper");
+    return value.toBytes();
+  }
+
+  set exchangeWrapper(value: Bytes) {
+    this.set("exchangeWrapper", Value.fromBytes(value));
+  }
+}
+
+export class Sell extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Sell entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Sell entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Sell", id.toString(), this);
+  }
+
+  static load(id: string): Sell | null {
+    return store.get("Sell", id) as Sell | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get accountOwner(): Bytes {
+    let value = this.get("accountOwner");
+    return value.toBytes();
+  }
+
+  set accountOwner(value: Bytes) {
+    this.set("accountOwner", Value.fromBytes(value));
+  }
+
+  get accountNumber(): BigInt {
+    let value = this.get("accountNumber");
+    return value.toBigInt();
+  }
+
+  set accountNumber(value: BigInt) {
+    this.set("accountNumber", Value.fromBigInt(value));
+  }
+
+  get takerMarket(): BigInt {
+    let value = this.get("takerMarket");
+    return value.toBigInt();
+  }
+
+  set takerMarket(value: BigInt) {
+    this.set("takerMarket", Value.fromBigInt(value));
+  }
+
+  get makerMarket(): BigInt {
+    let value = this.get("makerMarket");
+    return value.toBigInt();
+  }
+
+  set makerMarket(value: BigInt) {
+    this.set("makerMarket", Value.fromBigInt(value));
+  }
+
+  get takerUpdate_deltaWei_sign(): boolean {
+    let value = this.get("takerUpdate_deltaWei_sign");
+    return value.toBoolean();
+  }
+
+  set takerUpdate_deltaWei_sign(value: boolean) {
+    this.set("takerUpdate_deltaWei_sign", Value.fromBoolean(value));
+  }
+
+  get takerUpdate_deltaWei_value(): BigInt {
+    let value = this.get("takerUpdate_deltaWei_value");
+    return value.toBigInt();
+  }
+
+  set takerUpdate_deltaWei_value(value: BigInt) {
+    this.set("takerUpdate_deltaWei_value", Value.fromBigInt(value));
+  }
+
+  get takerUpdate_newPar_sign(): boolean {
+    let value = this.get("takerUpdate_newPar_sign");
+    return value.toBoolean();
+  }
+
+  set takerUpdate_newPar_sign(value: boolean) {
+    this.set("takerUpdate_newPar_sign", Value.fromBoolean(value));
+  }
+
+  get takerUpdate_newPar_value(): BigInt {
+    let value = this.get("takerUpdate_newPar_value");
+    return value.toBigInt();
+  }
+
+  set takerUpdate_newPar_value(value: BigInt) {
+    this.set("takerUpdate_newPar_value", Value.fromBigInt(value));
+  }
+
+  get makerUpdate_deltaWei_sign(): boolean {
+    let value = this.get("makerUpdate_deltaWei_sign");
+    return value.toBoolean();
+  }
+
+  set makerUpdate_deltaWei_sign(value: boolean) {
+    this.set("makerUpdate_deltaWei_sign", Value.fromBoolean(value));
+  }
+
+  get makerUpdate_deltaWei_value(): BigInt {
+    let value = this.get("makerUpdate_deltaWei_value");
+    return value.toBigInt();
+  }
+
+  set makerUpdate_deltaWei_value(value: BigInt) {
+    this.set("makerUpdate_deltaWei_value", Value.fromBigInt(value));
+  }
+
+  get makerUpdate_newPar_sign(): boolean {
+    let value = this.get("makerUpdate_newPar_sign");
+    return value.toBoolean();
+  }
+
+  set makerUpdate_newPar_sign(value: boolean) {
+    this.set("makerUpdate_newPar_sign", Value.fromBoolean(value));
+  }
+
+  get makerUpdate_newPar_value(): BigInt {
+    let value = this.get("makerUpdate_newPar_value");
+    return value.toBigInt();
+  }
+
+  set makerUpdate_newPar_value(value: BigInt) {
+    this.set("makerUpdate_newPar_value", Value.fromBigInt(value));
+  }
+
+  get exchangeWrapper(): Bytes {
+    let value = this.get("exchangeWrapper");
+    return value.toBytes();
+  }
+
+  set exchangeWrapper(value: Bytes) {
+    this.set("exchangeWrapper", Value.fromBytes(value));
+  }
+}
