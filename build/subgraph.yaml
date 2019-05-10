@@ -1,12 +1,12 @@
 specVersion: 0.0.1
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: Contract
     network: mainnet
     source:
-      address: "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e"
+      address: '0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e'
       abi: Contract
     mapping:
       kind: ethereum/events
@@ -41,47 +41,55 @@ dataSources:
         - LogOperatorSet1
       abis:
         - name: Contract
-          file: ./abis/Contract.json
+          file: Contract/abis/Contract.json
       eventHandlers:
-        - event: LogOperatorSet(address,address,bool)
+        - event: 'LogOperatorSet(address,address,bool)'
           handler: handleLogOperatorSet
-        - event: OwnershipTransferred(address,address)
+        - event: 'OwnershipTransferred(address,address)'
           handler: handleOwnershipTransferred
-        - event: LogIndexUpdate(uint256,(uint96,uint96,uint32))
+        - event: 'LogIndexUpdate(uint256,(uint96,uint96,uint32))'
           handler: handleLogIndexUpdate
         - event: LogOperation(address)
           handler: handleLogOperation
-        - event: LogDeposit(address,uint256,uint256,((bool,uint256),(bool,uint128)),address)
+        - event: >-
+            LogDeposit(address,uint256,uint256,((bool,uint256),(bool,uint128)),address)
           handler: handleLogDeposit
-        - event: LogWithdraw(address,uint256,uint256,((bool,uint256),(bool,uint128)),address)
+        - event: >-
+            LogWithdraw(address,uint256,uint256,((bool,uint256),(bool,uint128)),address)
           handler: handleLogWithdraw
-        - event: LogTransfer(address,uint256,address,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)))
+        - event: >-
+            LogTransfer(address,uint256,address,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)))
           handler: handleLogTransfer
-        - event: LogBuy(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
+        - event: >-
+            LogBuy(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
           handler: handleLogBuy
-        - event: LogSell(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
+        - event: >-
+            LogSell(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
           handler: handleLogSell
-        - event: LogTrade(address,uint256,address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
+        - event: >-
+            LogTrade(address,uint256,address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
           handler: handleLogTrade
-        - event: LogCall(address,uint256,address)
+        - event: 'LogCall(address,uint256,address)'
           handler: handleLogCall
-        - event: LogLiquidate(address,uint256,address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)))
+        - event: >-
+            LogLiquidate(address,uint256,address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)))
           handler: handleLogLiquidate
-        - event: LogVaporize(address,uint256,address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)))
+        - event: >-
+            LogVaporize(address,uint256,address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)))
           handler: handleLogVaporize
-        - event: LogWithdrawExcessTokens(address,uint256)
+        - event: 'LogWithdrawExcessTokens(address,uint256)'
           handler: handleLogWithdrawExcessTokens
-        - event: LogAddMarket(uint256,address)
+        - event: 'LogAddMarket(uint256,address)'
           handler: handleLogAddMarket
-        - event: LogSetIsClosing(uint256,bool)
+        - event: 'LogSetIsClosing(uint256,bool)'
           handler: handleLogSetIsClosing
-        - event: LogSetPriceOracle(uint256,address)
+        - event: 'LogSetPriceOracle(uint256,address)'
           handler: handleLogSetPriceOracle
-        - event: LogSetInterestSetter(uint256,address)
+        - event: 'LogSetInterestSetter(uint256,address)'
           handler: handleLogSetInterestSetter
-        - event: LogSetMarginPremium(uint256,(uint256))
+        - event: 'LogSetMarginPremium(uint256,(uint256))'
           handler: handleLogSetMarginPremium
-        - event: LogSetSpreadPremium(uint256,(uint256))
+        - event: 'LogSetSpreadPremium(uint256,(uint256))'
           handler: handleLogSetSpreadPremium
         - event: LogSetMarginRatio((uint256))
           handler: handleLogSetMarginRatio
@@ -91,8 +99,8 @@ dataSources:
           handler: handleLogSetEarningsRate
         - event: LogSetMinBorrowedValue((uint256))
           handler: handleLogSetMinBorrowedValue
-        - event: LogSetGlobalOperator(address,bool)
+        - event: 'LogSetGlobalOperator(address,bool)'
           handler: handleLogSetGlobalOperator
-        - event: LogOperatorSet(address,address,bool)
+        - event: 'LogOperatorSet(address,address,bool)'
           handler: handleLogOperatorSet1
-      file: ./src/mapping.ts
+      file: Contract/Contract.wasm
