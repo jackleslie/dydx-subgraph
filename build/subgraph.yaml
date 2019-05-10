@@ -13,94 +13,14 @@ dataSources:
       apiVersion: 0.0.2
       language: wasm/assemblyscript
       entities:
-        - LogOperatorSet
-        - OwnershipTransferred
-        - LogIndexUpdate
-        - LogOperation
-        - LogDeposit
-        - LogWithdraw
-        - LogTransfer
-        - LogBuy
-        - LogSell
-        - LogTrade
-        - LogCall
-        - LogLiquidate
-        - LogVaporize
-        - LogWithdrawExcessTokens
-        - LogSetIsClosing
-        - LogSetPriceOracle
-        - LogSetInterestSetter
-        - LogSetMarginPremium
-        - LogSetSpreadPremium
-        - LogSetMarginRatio
-        - LogSetLiquidationSpread
-        - LogSetEarningsRate
-        - LogSetMinBorrowedValue
-        - LogSetGlobalOperator
-        - LogOperatorSet1
         - Market
+        - Index
       abis:
         - name: Contract
           file: Contract/abis/Contract.json
       eventHandlers:
-        - event: 'LogOperatorSet(address,address,bool)'
-          handler: handleLogOperatorSet
-        - event: 'OwnershipTransferred(address,address)'
-          handler: handleOwnershipTransferred
         - event: 'LogIndexUpdate(uint256,(uint96,uint96,uint32))'
           handler: handleLogIndexUpdate
-        - event: LogOperation(address)
-          handler: handleLogOperation
-        - event: >-
-            LogDeposit(address,uint256,uint256,((bool,uint256),(bool,uint128)),address)
-          handler: handleLogDeposit
-        - event: >-
-            LogWithdraw(address,uint256,uint256,((bool,uint256),(bool,uint128)),address)
-          handler: handleLogWithdraw
-        - event: >-
-            LogTransfer(address,uint256,address,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)))
-          handler: handleLogTransfer
-        - event: >-
-            LogBuy(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
-          handler: handleLogBuy
-        - event: >-
-            LogSell(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
-          handler: handleLogSell
-        - event: >-
-            LogTrade(address,uint256,address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
-          handler: handleLogTrade
-        - event: 'LogCall(address,uint256,address)'
-          handler: handleLogCall
-        - event: >-
-            LogLiquidate(address,uint256,address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)))
-          handler: handleLogLiquidate
-        - event: >-
-            LogVaporize(address,uint256,address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)))
-          handler: handleLogVaporize
-        - event: 'LogWithdrawExcessTokens(address,uint256)'
-          handler: handleLogWithdrawExcessTokens
         - event: 'LogAddMarket(uint256,address)'
           handler: handleLogAddMarket
-        - event: 'LogSetIsClosing(uint256,bool)'
-          handler: handleLogSetIsClosing
-        - event: 'LogSetPriceOracle(uint256,address)'
-          handler: handleLogSetPriceOracle
-        - event: 'LogSetInterestSetter(uint256,address)'
-          handler: handleLogSetInterestSetter
-        - event: 'LogSetMarginPremium(uint256,(uint256))'
-          handler: handleLogSetMarginPremium
-        - event: 'LogSetSpreadPremium(uint256,(uint256))'
-          handler: handleLogSetSpreadPremium
-        - event: LogSetMarginRatio((uint256))
-          handler: handleLogSetMarginRatio
-        - event: LogSetLiquidationSpread((uint256))
-          handler: handleLogSetLiquidationSpread
-        - event: LogSetEarningsRate((uint256))
-          handler: handleLogSetEarningsRate
-        - event: LogSetMinBorrowedValue((uint256))
-          handler: handleLogSetMinBorrowedValue
-        - event: 'LogSetGlobalOperator(address,bool)'
-          handler: handleLogSetGlobalOperator
-        - event: 'LogOperatorSet(address,address,bool)'
-          handler: handleLogOperatorSet1
       file: Contract/Contract.wasm
