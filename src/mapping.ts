@@ -39,6 +39,7 @@ export function handleLogBuy(event: LogBuy): void {
   entity.makerUpdate_newPar_sign = event.params.makerUpdate.newPar.sign;
   entity.makerUpdate_newPar_value = event.params.makerUpdate.newPar.value;
   entity.exchangeWrapper = event.params.exchangeWrapper;
+  entity.timestamp = event.block.timestamp;
   entity.save();
 }
 
@@ -59,5 +60,6 @@ export function handleLogSell(event: LogSell): void {
   entity.makerUpdate_newPar_sign = event.params.makerUpdate.newPar.sign;
   entity.makerUpdate_newPar_value = event.params.makerUpdate.newPar.value;
   entity.exchangeWrapper = event.params.exchangeWrapper;
+  entity.timestamp = event.block.timestamp;
   entity.save();
 }

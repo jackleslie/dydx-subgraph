@@ -272,6 +272,15 @@ export class Buy extends Entity {
   set exchangeWrapper(value: Bytes) {
     this.set("exchangeWrapper", Value.fromBytes(value));
   }
+
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
+    return value.toBigInt();
+  }
+
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
+  }
 }
 
 export class Sell extends Entity {
@@ -419,5 +428,14 @@ export class Sell extends Entity {
 
   set exchangeWrapper(value: Bytes) {
     this.set("exchangeWrapper", Value.fromBytes(value));
+  }
+
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
+    return value.toBigInt();
+  }
+
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
   }
 }

@@ -1,4 +1,6 @@
 specVersion: 0.0.1
+description: Submission for the CoinList + The Graph hackathon
+repository: 'https://github.com/jackleslie/dydx-subgraph'
 schema:
   file: schema.graphql
 dataSources:
