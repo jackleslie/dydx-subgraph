@@ -281,6 +281,15 @@ export class Buy extends Entity {
   set timestamp(value: BigInt) {
     this.set("timestamp", Value.fromBigInt(value));
   }
+
+  get expires(): string {
+    let value = this.get("expires");
+    return value.toString();
+  }
+
+  set expires(value: string) {
+    this.set("expires", Value.fromString(value));
+  }
 }
 
 export class Sell extends Entity {
@@ -437,5 +446,81 @@ export class Sell extends Entity {
 
   set timestamp(value: BigInt) {
     this.set("timestamp", Value.fromBigInt(value));
+  }
+
+  get expires(): string {
+    let value = this.get("expires");
+    return value.toString();
+  }
+
+  set expires(value: string) {
+    this.set("expires", Value.fromString(value));
+  }
+}
+
+export class Expiry extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Expiry entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Expiry entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Expiry", id.toString(), this);
+  }
+
+  static load(id: string): Expiry | null {
+    return store.get("Expiry", id) as Expiry | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get accountOwner(): Bytes {
+    let value = this.get("accountOwner");
+    return value.toBytes();
+  }
+
+  set accountOwner(value: Bytes) {
+    this.set("accountOwner", Value.fromBytes(value));
+  }
+
+  get accountNumber(): BigInt {
+    let value = this.get("accountNumber");
+    return value.toBigInt();
+  }
+
+  set accountNumber(value: BigInt) {
+    this.set("accountNumber", Value.fromBigInt(value));
+  }
+
+  get marketId(): BigInt {
+    let value = this.get("marketId");
+    return value.toBigInt();
+  }
+
+  set marketId(value: BigInt) {
+    this.set("marketId", Value.fromBigInt(value));
+  }
+
+  get time(): BigInt {
+    let value = this.get("time");
+    return value.toBigInt();
+  }
+
+  set time(value: BigInt) {
+    this.set("time", Value.fromBigInt(value));
   }
 }

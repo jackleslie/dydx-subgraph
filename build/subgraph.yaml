@@ -1,14 +1,14 @@
 specVersion: 0.0.1
 description: Submission for the CoinList + The Graph hackathon
-repository: https://github.com/jackleslie/dydx-subgraph
+repository: 'https://github.com/jackleslie/dydx-subgraph'
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: SoloMargin
     network: mainnet
     source:
-      address: "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e"
+      address: '0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e'
       abi: SoloMargin
     mapping:
       kind: ethereum/events
@@ -21,22 +21,24 @@ dataSources:
         - Sell
       abis:
         - name: SoloMargin
-          file: ./abis/SoloMargin.json
+          file: SoloMargin/abis/SoloMargin.json
       eventHandlers:
-        - event: LogIndexUpdate(uint256,(uint96,uint96,uint32))
+        - event: 'LogIndexUpdate(uint256,(uint96,uint96,uint32))'
           handler: handleLogIndexUpdate
-        - event: LogAddMarket(uint256,address)
+        - event: 'LogAddMarket(uint256,address)'
           handler: handleLogAddMarket
-        - event: LogBuy(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
+        - event: >-
+            LogBuy(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
           handler: handleLogBuy
-        - event: LogSell(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
+        - event: >-
+            LogSell(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
           handler: handleLogSell
-      file: ./src/solo.ts
+      file: SoloMargin/SoloMargin.wasm
   - kind: ethereum/contract
     name: Expiry
     network: mainnet
     source:
-      address: "0x0ECE224FBC24D40B446c6a94a142dc41fAe76f2d"
+      address: '0x0ECE224FBC24D40B446c6a94a142dc41fAe76f2d'
       abi: Expiry
     mapping:
       kind: ethereum/events
@@ -46,8 +48,8 @@ dataSources:
         - Expiry
       abis:
         - name: Expiry
-          file: ./abis/Expiry.json
+          file: Expiry/abis/Expiry.json
       eventHandlers:
-        - event: ExpirySet(address,uint256,uint256,uint32)
+        - event: 'ExpirySet(address,uint256,uint256,uint32)'
           handler: handleEventSet
-      file: ./src/expiry.ts
+      file: Expiry/Expiry.wasm
