@@ -187,12 +187,6 @@ type LogWithdrawExcessTokens @entity {
   amount: BigInt! # uint256
 }
 
-type LogAddMarket @entity {
-  id: ID!
-  marketId: BigInt! # uint256
-  token: Bytes! # address
-}
-
 type LogSetIsClosing @entity {
   id: ID!
   marketId: BigInt! # uint256
@@ -254,4 +248,10 @@ type LogOperatorSet1 @entity {
   owner: Bytes! # address
   operator: Bytes! # address
   trusted: Boolean! # bool
+}
+
+type Market @entity {
+  id: ID!
+  marketId: BigInt! # uint256
+  token: Bytes! # address
 }

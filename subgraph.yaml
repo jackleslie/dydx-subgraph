@@ -27,7 +27,6 @@ dataSources:
         - LogLiquidate
         - LogVaporize
         - LogWithdrawExcessTokens
-        - LogAddMarket
         - LogSetIsClosing
         - LogSetPriceOracle
         - LogSetInterestSetter
@@ -39,6 +38,7 @@ dataSources:
         - LogSetMinBorrowedValue
         - LogSetGlobalOperator
         - LogOperatorSet1
+        - Market
       abis:
         - name: Contract
           file: ./abis/Contract.json

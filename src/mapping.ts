@@ -41,7 +41,7 @@ import {
   LogLiquidate,
   LogVaporize,
   LogWithdrawExcessTokens,
-  LogAddMarket,
+  Market,
   LogSetIsClosing,
   LogSetPriceOracle,
   LogSetInterestSetter,
@@ -328,7 +328,7 @@ export function handleLogWithdrawExcessTokens(
 }
 
 export function handleLogAddMarket(event: LogAddMarketEvent): void {
-  let entity = new LogAddMarket(event.params.marketId.toString());
+  let entity = new Market(event.params.marketId.toString());
   entity.marketId = event.params.marketId;
   entity.token = event.params.token;
   entity.save();
