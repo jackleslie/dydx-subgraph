@@ -3,7 +3,7 @@ import {
   LogAddMarket,
   LogBuy,
   LogSell
-} from "../generated/Contract/Contract";
+} from "../generated/SoloMargin/SoloMargin";
 import { Index, Market, Buy, Sell } from "../generated/schema";
 
 export function handleLogIndexUpdate(event: LogIndexUpdate): void {

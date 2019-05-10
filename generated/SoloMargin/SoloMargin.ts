@@ -1376,7 +1376,7 @@ export class LogOperatorSet1__Params {
   }
 }
 
-export class Contract__getAccountValuesResult {
+export class SoloMargin__getAccountValuesResult {
   value0: EthereumTuple;
   value1: EthereumTuple;
 
@@ -1393,7 +1393,7 @@ export class Contract__getAccountValuesResult {
   }
 }
 
-export class Contract__getMarketWithInfoResult {
+export class SoloMargin__getMarketWithInfoResult {
   value0: EthereumTuple;
   value1: EthereumTuple;
   value2: EthereumTuple;
@@ -1421,7 +1421,7 @@ export class Contract__getMarketWithInfoResult {
   }
 }
 
-export class Contract__getAdjustedAccountValuesResult {
+export class SoloMargin__getAdjustedAccountValuesResult {
   value0: EthereumTuple;
   value1: EthereumTuple;
 
@@ -1438,9 +1438,9 @@ export class Contract__getAdjustedAccountValuesResult {
   }
 }
 
-export class Contract extends SmartContract {
-  static bind(address: Address): Contract {
-    return new Contract("Contract", address);
+export class SoloMargin extends SmartContract {
+  static bind(address: Address): SoloMargin {
+    return new SoloMargin("SoloMargin", address);
   }
 
   getIsGlobalOperator(operator: Address): boolean {
@@ -1457,11 +1457,11 @@ export class Contract extends SmartContract {
     return result[0].toAddress();
   }
 
-  getAccountValues(account: EthereumTuple): Contract__getAccountValuesResult {
+  getAccountValues(account: EthereumTuple): SoloMargin__getAccountValuesResult {
     let result = super.call("getAccountValues", [
       EthereumValue.fromTuple(account)
     ]);
-    return new Contract__getAccountValuesResult(
+    return new SoloMargin__getAccountValuesResult(
       result[0].toTuple(),
       result[1].toTuple()
     );
@@ -1555,11 +1555,11 @@ export class Contract extends SmartContract {
     return result[0].toBoolean();
   }
 
-  getMarketWithInfo(marketId: BigInt): Contract__getMarketWithInfoResult {
+  getMarketWithInfo(marketId: BigInt): SoloMargin__getMarketWithInfoResult {
     let result = super.call("getMarketWithInfo", [
       EthereumValue.fromUnsignedBigInt(marketId)
     ]);
-    return new Contract__getMarketWithInfoResult(
+    return new SoloMargin__getMarketWithInfoResult(
       result[0].toTuple(),
       result[1].toTuple(),
       result[2].toTuple(),
@@ -1638,11 +1638,11 @@ export class Contract extends SmartContract {
 
   getAdjustedAccountValues(
     account: EthereumTuple
-  ): Contract__getAdjustedAccountValuesResult {
+  ): SoloMargin__getAdjustedAccountValuesResult {
     let result = super.call("getAdjustedAccountValues", [
       EthereumValue.fromTuple(account)
     ]);
-    return new Contract__getAdjustedAccountValuesResult(
+    return new SoloMargin__getAdjustedAccountValuesResult(
       result[0].toTuple(),
       result[1].toTuple()
     );
