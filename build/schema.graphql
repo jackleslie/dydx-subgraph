@@ -28,6 +28,8 @@ type Buy @entity {
   makerUpdate_newPar_value: BigInt! # uint128
   exchangeWrapper: Bytes! # address
   timestamp: BigInt! # uint128
+  value: BigInt!
+  leverage: BigInt
   expires: BigInt # uint128
 }
 
@@ -47,6 +49,7 @@ type Sell @entity {
   makerUpdate_newPar_value: BigInt! # uint128
   exchangeWrapper: Bytes! # address
   timestamp: BigInt! # uint128
+  value: BigInt!
   expires: BigInt # uint128
 }
 

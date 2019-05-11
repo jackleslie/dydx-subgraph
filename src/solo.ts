@@ -40,6 +40,10 @@ export function handleLogBuy(event: LogBuy): void {
   entity.makerUpdate_newPar_value = event.params.makerUpdate.newPar.value;
   entity.exchangeWrapper = event.params.exchangeWrapper;
   entity.timestamp = event.block.timestamp;
+  entity.value = event.transaction.value;
+  if (entity.value.toString() != "0") {
+    entity.leverage = entity.makerUpdate_deltaWei_value / entity.value;
+  }
 
   let expiryId =
     event.params.accountOwner.toHexString() +
@@ -74,6 +78,7 @@ export function handleLogSell(event: LogSell): void {
   entity.makerUpdate_newPar_value = event.params.makerUpdate.newPar.value;
   entity.exchangeWrapper = event.params.exchangeWrapper;
   entity.timestamp = event.block.timestamp;
+  entity.value = event.transaction.value;
 
   let expiryId =
     event.params.accountOwner.toHexString() +
