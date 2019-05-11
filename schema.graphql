@@ -29,7 +29,7 @@ type Buy @entity {
   exchangeWrapper: Bytes! # address
   timestamp: BigInt! # uint128
   value: BigInt!
-  leverage: BigInt
+  leverage: BigDecimal
   expires: BigInt # uint128
 }
 

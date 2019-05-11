@@ -291,20 +291,20 @@ export class Buy extends Entity {
     this.set("value", Value.fromBigInt(value));
   }
 
-  get leverage(): BigInt | null {
+  get leverage(): BigDecimal | null {
     let value = this.get("leverage");
     if (value === null) {
       return null;
     } else {
-      return value.toBigInt();
+      return value.toBigDecimal();
     }
   }
 
-  set leverage(value: BigInt | null) {
+  set leverage(value: BigDecimal | null) {
     if (value === null) {
       this.unset("leverage");
     } else {
-      this.set("leverage", Value.fromBigInt(value as BigInt));
+      this.set("leverage", Value.fromBigDecimal(value as BigDecimal));
     }
   }
 

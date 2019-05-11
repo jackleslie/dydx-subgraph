@@ -42,7 +42,8 @@ export function handleLogBuy(event: LogBuy): void {
   entity.timestamp = event.block.timestamp;
   entity.value = event.transaction.value;
   if (entity.value.toString() != "0") {
-    entity.leverage = entity.makerUpdate_deltaWei_value / entity.value;
+    let leverageBigInt = entity.makerUpdate_deltaWei_value / entity.value;
+    entity.leverage = leverageBigInt.toBigDecimal();
   }
 
   let expiryId =
