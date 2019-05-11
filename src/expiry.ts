@@ -3,11 +3,7 @@ import { Expiry } from "../generated/schema";
 
 export function handleExpirySet(event: ExpirySet): void {
   let entity = new Expiry(
-    event.params.owner.toHexString() +
-      "-" +
-      event.params.number.toString() +
-      "-" +
-      event.params.marketId.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
   entity.accountOwner = event.params.owner;
   entity.accountNumber = event.params.number;

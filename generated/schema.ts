@@ -307,23 +307,6 @@ export class Buy extends Entity {
       this.set("leverage", Value.fromBigDecimal(value as BigDecimal));
     }
   }
-
-  get expires(): BigInt | null {
-    let value = this.get("expires");
-    if (value === null) {
-      return null;
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set expires(value: BigInt | null) {
-    if (value === null) {
-      this.unset("expires");
-    } else {
-      this.set("expires", Value.fromBigInt(value as BigInt));
-    }
-  }
 }
 
 export class Sell extends Entity {
@@ -489,23 +472,6 @@ export class Sell extends Entity {
 
   set value(value: BigInt) {
     this.set("value", Value.fromBigInt(value));
-  }
-
-  get expires(): BigInt | null {
-    let value = this.get("expires");
-    if (value === null) {
-      return null;
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set expires(value: BigInt | null) {
-    if (value === null) {
-      this.unset("expires");
-    } else {
-      this.set("expires", Value.fromBigInt(value as BigInt));
-    }
   }
 }
 

@@ -30,7 +30,6 @@ type Buy @entity {
   timestamp: BigInt! # uint128
   value: BigInt!
   leverage: BigDecimal
-  expires: BigInt # uint128
 }
 
 type Sell @entity {
@@ -50,7 +49,6 @@ type Sell @entity {
   exchangeWrapper: Bytes! # address
   timestamp: BigInt! # uint128
   value: BigInt!
-  expires: BigInt # uint128
 }
 
 type Expiry @entity {

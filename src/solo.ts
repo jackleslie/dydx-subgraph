@@ -41,22 +41,10 @@ export function handleLogBuy(event: LogBuy): void {
   entity.exchangeWrapper = event.params.exchangeWrapper;
   entity.timestamp = event.block.timestamp;
   entity.value = event.transaction.value;
+
   if (entity.value.toString() != "0") {
     let leverageBigInt = entity.makerUpdate_deltaWei_value / entity.value;
     entity.leverage = leverageBigInt.toBigDecimal();
-  }
-
-  let expiryId =
-    event.params.accountOwner.toHexString() +
-    "-" +
-    event.params.accountNumber.toString() +
-    "-" +
-    event.params.takerMarket.toString();
-  let expiry = Expiry.load(expiryId);
-  if (expiry == null) {
-    entity.expires = null;
-  } else {
-    entity.expires = expiry.time;
   }
   entity.save();
 }
@@ -80,18 +68,5 @@ export function handleLogSell(event: LogSell): void {
   entity.exchangeWrapper = event.params.exchangeWrapper;
   entity.timestamp = event.block.timestamp;
   entity.value = event.transaction.value;
-
-  let expiryId =
-    event.params.accountOwner.toHexString() +
-    "-" +
-    event.params.accountNumber.toString() +
-    "-" +
-    event.params.takerMarket.toString();
-  let expiry = Expiry.load(expiryId);
-  if (expiry == null) {
-    entity.expires = null;
-  } else {
-    entity.expires = expiry.time;
-  }
   entity.save();
 }
