@@ -24,7 +24,11 @@ export function handleLogAddMarket(event: LogAddMarket): void {
 
 export function handleLogBuy(event: LogBuy): void {
   let entity = new Buy(
-    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
+    event.params.accountOwner.toHexString() +
+      "-" +
+      event.params.accountNumber.toString() +
+      "-" +
+      event.params.takerMarket.toString()
   );
   entity.accountOwner = event.params.accountOwner;
   entity.accountNumber = event.params.accountNumber;
@@ -42,10 +46,10 @@ export function handleLogBuy(event: LogBuy): void {
   entity.timestamp = event.block.timestamp;
   entity.value = event.transaction.value;
 
-  if (entity.value.toString() != "0") {
-    let leverageBigInt = entity.makerUpdate_deltaWei_value / entity.value;
-    entity.leverage = leverageBigInt.toBigDecimal();
-  }
+  entity.leverage =
+    entity.makerUpdate_newPar_value.toBigDecimal() /
+    entity.makerUpdate_deltaWei_value.toBigDecimal();
+
   entity.save();
 }
 

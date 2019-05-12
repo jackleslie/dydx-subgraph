@@ -30,6 +30,7 @@ type Buy @entity {
   timestamp: BigInt! # uint128
   value: BigInt!
   leverage: BigDecimal
+  expires: BigInt
 }
 
 type Sell @entity {

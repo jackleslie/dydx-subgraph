@@ -1,13 +1,16 @@
 import { ExpirySet } from "../generated/Expiry/Expiry";
-import { Expiry } from "../generated/schema";
+import { Buy } from "../generated/schema";
 
 export function handleExpirySet(event: ExpirySet): void {
-  let entity = new Expiry(
-    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
-  );
-  entity.accountOwner = event.params.owner;
-  entity.accountNumber = event.params.number;
-  entity.marketId = event.params.marketId;
-  entity.time = event.params.time;
-  entity.save();
+  let buyId =
+    event.params.owner.toHexString() +
+    "-" +
+    event.params.number.toString() +
+    "-" +
+    event.params.marketId.toString();
+  let entity = Buy.load(buyId);
+  if (entity != null) {
+    entity.expires = event.params.time;
+    entity.save();
+  }
 }
