@@ -1,5 +1,5 @@
 import { ExpirySet } from "../generated/Expiry/Expiry";
-import { Buy } from "../generated/schema";
+import { Long } from "../generated/schema";
 
 export function handleExpirySet(event: ExpirySet): void {
   let buyId =
@@ -8,7 +8,7 @@ export function handleExpirySet(event: ExpirySet): void {
     event.params.number.toString() +
     "-" +
     event.params.marketId.toString();
-  let entity = Buy.load(buyId);
+  let entity = Long.load(buyId);
   if (entity != null) {
     entity.expires = event.params.time;
     entity.save();

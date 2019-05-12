@@ -12,7 +12,7 @@ type Index @entity {
   lastUpdate: BigInt! # uint32
 }
 
-type Buy @entity {
+type Long @entity {
   id: ID!
   accountOwner: Bytes! # address
   accountNumber: BigInt! # uint256
@@ -34,7 +34,7 @@ type Buy @entity {
   openPrice: BigDecimal
 }
 
-type Sell @entity {
+type Short @entity {
   id: ID!
   accountOwner: Bytes! # address
   accountNumber: BigInt! # uint256
@@ -51,6 +51,9 @@ type Sell @entity {
   exchangeWrapper: Bytes! # address
   timestamp: BigInt! # uint128
   value: BigInt!
+  leverage: BigDecimal
+  expires: BigInt
+  openPrice: BigDecimal
 }
 
 type Expiry @entity {

@@ -17,8 +17,8 @@ dataSources:
       entities:
         - Market
         - Index
-        - Buy
-        - Sell
+        - Long
+        - Short
       abis:
         - name: SoloMargin
           file: ./abis/SoloMargin.json

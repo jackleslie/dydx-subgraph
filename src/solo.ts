@@ -4,7 +4,7 @@ import {
   LogBuy,
   LogSell
 } from "../generated/SoloMargin/SoloMargin";
-import { Index, Market, Buy, Sell, Expiry } from "../generated/schema";
+import { Index, Market, Long, Short, Expiry } from "../generated/schema";
 
 export function handleLogIndexUpdate(event: LogIndexUpdate): void {
   let entity = new Index(event.params.market.toString());
@@ -23,7 +23,7 @@ export function handleLogAddMarket(event: LogAddMarket): void {
 }
 
 export function handleLogBuy(event: LogBuy): void {
-  let entity = new Buy(
+  let entity = new Long(
     event.params.accountOwner.toHexString() +
       "-" +
       event.params.accountNumber.toString() +
@@ -56,7 +56,7 @@ export function handleLogBuy(event: LogBuy): void {
 }
 
 export function handleLogSell(event: LogSell): void {
-  let entity = new Sell(
+  let entity = new Short(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
   entity.accountOwner = event.params.accountOwner;
@@ -74,5 +74,8 @@ export function handleLogSell(event: LogSell): void {
   entity.exchangeWrapper = event.params.exchangeWrapper;
   entity.timestamp = event.block.timestamp;
   entity.value = event.transaction.value;
+  entity.openPrice =
+    entity.makerUpdate_deltaWei_value.toBigDecimal() /
+    entity.takerUpdate_deltaWei_value.toBigDecimal();
   entity.save();
 }

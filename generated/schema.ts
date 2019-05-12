@@ -126,7 +126,7 @@ export class Index extends Entity {
   }
 }
 
-export class Buy extends Entity {
+export class Long extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -134,17 +134,17 @@ export class Buy extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save Buy entity without an ID");
+    assert(id !== null, "Cannot save Long entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save Buy entity with non-string ID. " +
+      "Cannot save Long entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("Buy", id.toString(), this);
+    store.set("Long", id.toString(), this);
   }
 
-  static load(id: string): Buy | null {
-    return store.get("Buy", id) as Buy | null;
+  static load(id: string): Long | null {
+    return store.get("Long", id) as Long | null;
   }
 
   get id(): string {
@@ -343,7 +343,7 @@ export class Buy extends Entity {
   }
 }
 
-export class Sell extends Entity {
+export class Short extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -351,17 +351,17 @@ export class Sell extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save Sell entity without an ID");
+    assert(id !== null, "Cannot save Short entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save Sell entity with non-string ID. " +
+      "Cannot save Short entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("Sell", id.toString(), this);
+    store.set("Short", id.toString(), this);
   }
 
-  static load(id: string): Sell | null {
-    return store.get("Sell", id) as Sell | null;
+  static load(id: string): Short | null {
+    return store.get("Short", id) as Short | null;
   }
 
   get id(): string {
@@ -506,6 +506,57 @@ export class Sell extends Entity {
 
   set value(value: BigInt) {
     this.set("value", Value.fromBigInt(value));
+  }
+
+  get leverage(): BigDecimal | null {
+    let value = this.get("leverage");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigDecimal();
+    }
+  }
+
+  set leverage(value: BigDecimal | null) {
+    if (value === null) {
+      this.unset("leverage");
+    } else {
+      this.set("leverage", Value.fromBigDecimal(value as BigDecimal));
+    }
+  }
+
+  get expires(): BigInt | null {
+    let value = this.get("expires");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set expires(value: BigInt | null) {
+    if (value === null) {
+      this.unset("expires");
+    } else {
+      this.set("expires", Value.fromBigInt(value as BigInt));
+    }
+  }
+
+  get openPrice(): BigDecimal | null {
+    let value = this.get("openPrice");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigDecimal();
+    }
+  }
+
+  set openPrice(value: BigDecimal | null) {
+    if (value === null) {
+      this.unset("openPrice");
+    } else {
+      this.set("openPrice", Value.fromBigDecimal(value as BigDecimal));
+    }
   }
 }
 
