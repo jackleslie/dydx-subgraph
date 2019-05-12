@@ -45,7 +45,9 @@ export function handleLogBuy(event: LogBuy): void {
   entity.exchangeWrapper = event.params.exchangeWrapper;
   entity.timestamp = event.block.timestamp;
   entity.value = event.transaction.value;
-
+  entity.openPrice =
+    entity.takerUpdate_deltaWei_value.toBigDecimal() /
+    entity.makerUpdate_deltaWei_value.toBigDecimal();
   entity.leverage =
     entity.makerUpdate_newPar_value.toBigDecimal() /
     entity.makerUpdate_deltaWei_value.toBigDecimal();

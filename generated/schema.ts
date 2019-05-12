@@ -324,6 +324,23 @@ export class Buy extends Entity {
       this.set("expires", Value.fromBigInt(value as BigInt));
     }
   }
+
+  get openPrice(): BigDecimal | null {
+    let value = this.get("openPrice");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigDecimal();
+    }
+  }
+
+  set openPrice(value: BigDecimal | null) {
+    if (value === null) {
+      this.unset("openPrice");
+    } else {
+      this.set("openPrice", Value.fromBigDecimal(value as BigDecimal));
+    }
+  }
 }
 
 export class Sell extends Entity {
