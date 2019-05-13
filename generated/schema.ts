@@ -57,72 +57,56 @@ export class Market extends Entity {
   set token(value: Bytes) {
     this.set("token", Value.fromBytes(value));
   }
-}
 
-export class Index extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
+  get borrowIndex(): BigInt | null {
+    let value = this.get("borrowIndex");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save Index entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save Index entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("Index", id.toString(), this);
+  set borrowIndex(value: BigInt | null) {
+    if (value === null) {
+      this.unset("borrowIndex");
+    } else {
+      this.set("borrowIndex", Value.fromBigInt(value as BigInt));
+    }
   }
 
-  static load(id: string): Index | null {
-    return store.get("Index", id) as Index | null;
+  get supplyIndex(): BigInt | null {
+    let value = this.get("supplyIndex");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
+  set supplyIndex(value: BigInt | null) {
+    if (value === null) {
+      this.unset("supplyIndex");
+    } else {
+      this.set("supplyIndex", Value.fromBigInt(value as BigInt));
+    }
   }
 
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
+  get lastIndexUpdate(): BigInt | null {
+    let value = this.get("lastIndexUpdate");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  get market(): BigInt {
-    let value = this.get("market");
-    return value.toBigInt();
-  }
-
-  set market(value: BigInt) {
-    this.set("market", Value.fromBigInt(value));
-  }
-
-  get borrow(): BigInt {
-    let value = this.get("borrow");
-    return value.toBigInt();
-  }
-
-  set borrow(value: BigInt) {
-    this.set("borrow", Value.fromBigInt(value));
-  }
-
-  get supply(): BigInt {
-    let value = this.get("supply");
-    return value.toBigInt();
-  }
-
-  set supply(value: BigInt) {
-    this.set("supply", Value.fromBigInt(value));
-  }
-
-  get lastUpdate(): BigInt {
-    let value = this.get("lastUpdate");
-    return value.toBigInt();
-  }
-
-  set lastUpdate(value: BigInt) {
-    this.set("lastUpdate", Value.fromBigInt(value));
+  set lastIndexUpdate(value: BigInt | null) {
+    if (value === null) {
+      this.unset("lastIndexUpdate");
+    } else {
+      this.set("lastIndexUpdate", Value.fromBigInt(value as BigInt));
+    }
   }
 }
 
@@ -557,72 +541,5 @@ export class Short extends Entity {
     } else {
       this.set("openPrice", Value.fromBigDecimal(value as BigDecimal));
     }
-  }
-}
-
-export class Expiry extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save Expiry entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save Expiry entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("Expiry", id.toString(), this);
-  }
-
-  static load(id: string): Expiry | null {
-    return store.get("Expiry", id) as Expiry | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get accountOwner(): Bytes {
-    let value = this.get("accountOwner");
-    return value.toBytes();
-  }
-
-  set accountOwner(value: Bytes) {
-    this.set("accountOwner", Value.fromBytes(value));
-  }
-
-  get accountNumber(): BigInt {
-    let value = this.get("accountNumber");
-    return value.toBigInt();
-  }
-
-  set accountNumber(value: BigInt) {
-    this.set("accountNumber", Value.fromBigInt(value));
-  }
-
-  get marketId(): BigInt {
-    let value = this.get("marketId");
-    return value.toBigInt();
-  }
-
-  set marketId(value: BigInt) {
-    this.set("marketId", Value.fromBigInt(value));
-  }
-
-  get time(): BigInt {
-    let value = this.get("time");
-    return value.toBigInt();
-  }
-
-  set time(value: BigInt) {
-    this.set("time", Value.fromBigInt(value));
   }
 }

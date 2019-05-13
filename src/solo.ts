@@ -4,14 +4,14 @@ import {
   LogBuy,
   LogSell
 } from "../generated/SoloMargin/SoloMargin";
-import { Index, Market, Long, Short, Expiry } from "../generated/schema";
+import { Market, Long, Short } from "../generated/schema";
 
 export function handleLogIndexUpdate(event: LogIndexUpdate): void {
-  let entity = new Index(event.params.market.toString());
-  entity.market = event.params.market;
-  entity.borrow = event.params.index.borrow;
-  entity.supply = event.params.index.supply;
-  entity.lastUpdate = event.params.index.lastUpdate;
+  let id = event.params.market.toString();
+  let entity = Market.load(id);
+  entity.borrowIndex = event.params.index.borrow;
+  entity.supplyIndex = event.params.index.supply;
+  entity.lastIndexUpdate = event.params.index.lastUpdate;
   entity.save();
 }
 

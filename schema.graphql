@@ -2,14 +2,9 @@ type Market @entity {
   id: ID!
   marketId: BigInt! # uint256
   token: Bytes! # address
-}
-
-type Index @entity {
-  id: ID!
-  market: BigInt! # uint256
-  borrow: BigInt! # uint96
-  supply: BigInt! # uint96
-  lastUpdate: BigInt! # uint32
+  borrowIndex: BigInt
+  supplyIndex: BigInt
+  lastIndexUpdate: BigInt
 }
 
 type Long @entity {
@@ -54,12 +49,4 @@ type Short @entity {
   leverage: BigDecimal
   expires: BigInt
   openPrice: BigDecimal
-}
-
-type Expiry @entity {
-  id: ID!
-  accountOwner: Bytes! # address
-  accountNumber: BigInt! # uint256
-  marketId: BigInt! # uint256
-  time: BigInt! # uint32
 }
