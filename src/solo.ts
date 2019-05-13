@@ -50,14 +50,19 @@ export function handleLogBuy(event: LogBuy): void {
     entity.makerUpdate_deltaWei_value.toBigDecimal();
   entity.leverage =
     entity.makerUpdate_newPar_value.toBigDecimal() /
-    entity.makerUpdate_deltaWei_value.toBigDecimal();
+    (entity.makerUpdate_newPar_value.toBigDecimal() -
+      entity.makerUpdate_deltaWei_value.toBigDecimal());
 
   entity.save();
 }
 
 export function handleLogSell(event: LogSell): void {
   let entity = new Short(
-    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
+    event.params.accountOwner.toHexString() +
+      "-" +
+      event.params.accountNumber.toString() +
+      "-" +
+      event.params.takerMarket.toString()
   );
   entity.accountOwner = event.params.accountOwner;
   entity.accountNumber = event.params.accountNumber;
@@ -77,5 +82,9 @@ export function handleLogSell(event: LogSell): void {
   entity.openPrice =
     entity.makerUpdate_deltaWei_value.toBigDecimal() /
     entity.takerUpdate_deltaWei_value.toBigDecimal();
+  entity.leverage =
+    entity.makerUpdate_deltaWei_value.toBigDecimal() /
+    (entity.makerUpdate_newPar_value.toBigDecimal() -
+      entity.makerUpdate_deltaWei_value.toBigDecimal());
   entity.save();
 }
