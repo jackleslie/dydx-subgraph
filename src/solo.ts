@@ -5,7 +5,7 @@ import {
   LogSell
 } from "../generated/SoloMargin/SoloMargin";
 import { Market, Long, Short } from "../generated/schema";
-import { store } from "graph-ts";
+import { store } from "@graphprotocol/graph-ts";
 
 export function handleLogIndexUpdate(event: LogIndexUpdate): void {
   let id = event.params.market.toString();
