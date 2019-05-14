@@ -266,13 +266,22 @@ export class Long extends Entity {
     this.set("timestamp", Value.fromBigInt(value));
   }
 
-  get value(): BigInt {
-    let value = this.get("value");
+  get amount(): BigInt {
+    let value = this.get("amount");
     return value.toBigInt();
   }
 
-  set value(value: BigInt) {
-    this.set("value", Value.fromBigInt(value));
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+
+  get marginDeposit(): BigInt {
+    let value = this.get("marginDeposit");
+    return value.toBigInt();
+  }
+
+  set marginDeposit(value: BigInt) {
+    this.set("marginDeposit", Value.fromBigInt(value));
   }
 
   get leverage(): BigDecimal | null {

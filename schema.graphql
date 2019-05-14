@@ -23,7 +23,8 @@ type Long @entity {
   makerUpdate_newPar_value: BigInt! # uint128
   exchangeWrapper: Bytes! # address
   timestamp: BigInt! # uint128
-  value: BigInt!
+  amount: BigInt!
+  marginDeposit: BigInt!
   leverage: BigDecimal
   expires: BigInt
   openPrice: BigDecimal
