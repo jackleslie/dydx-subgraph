@@ -81,8 +81,8 @@ export function handleLogBuy(event: LogBuy): void {
         entity.amount =
           event.params.takerUpdate.newPar.value -
           event.params.takerUpdate.deltaWei.value;
+        entity.save();
       }
-      entity.save();
     }
   }
 }
