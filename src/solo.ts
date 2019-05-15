@@ -2,9 +2,7 @@ import {
   LogIndexUpdate,
   LogAddMarket,
   LogBuy,
-  LogSell,
-  LogDeposit,
-  LogWithdraw
+  LogSell
 } from "../generated/SoloMargin/SoloMargin";
 import { Market, Long, Short } from "../generated/schema";
 import { store } from "@graphprotocol/graph-ts";
@@ -22,20 +20,6 @@ export function handleLogAddMarket(event: LogAddMarket): void {
   let entity = new Market(event.params.marketId.toString());
   entity.marketId = event.params.marketId;
   entity.token = event.params.token;
-  entity.save();
-}
-
-export function handleLogDeposit(event: LogDeposit): void {
-  let id = event.params.market.toString();
-  let entity = Market.load(id);
-  entity.supplied += event.params.update.deltaWei.value;
-  entity.save();
-}
-
-export function handleLogWithdraw(event: LogWithdraw): void {
-  let id = event.params.market.toString();
-  let entity = Market.load(id);
-  entity.supplied -= event.params.update.deltaWei.value;
   entity.save();
 }
 

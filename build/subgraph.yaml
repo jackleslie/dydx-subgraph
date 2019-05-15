@@ -32,12 +32,6 @@ dataSources:
         - event: >-
             LogSell(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
           handler: handleLogSell
-        - event: >-
-            LogDeposit(address,uint256,uint256,((bool,uint256),(bool,uint128)),address)
-          handler: handleLogDeposit
-        - event: >-
-            LogWithdraw(address,uint256,uint256,((bool,uint256),(bool,uint128)),address)
-          handler: handleLogWithdraw
       file: SoloMargin/SoloMargin.wasm
   - kind: ethereum/contract
     name: Expiry
