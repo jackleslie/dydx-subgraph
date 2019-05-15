@@ -166,22 +166,31 @@ export class Long extends Entity {
     this.set("accountNumber", Value.fromBigInt(value));
   }
 
-  get takerMarket(): BigInt {
-    let value = this.get("takerMarket");
+  get takerMarketId(): BigInt {
+    let value = this.get("takerMarketId");
     return value.toBigInt();
   }
 
-  set takerMarket(value: BigInt) {
-    this.set("takerMarket", Value.fromBigInt(value));
+  set takerMarketId(value: BigInt) {
+    this.set("takerMarketId", Value.fromBigInt(value));
   }
 
-  get makerMarket(): BigInt {
-    let value = this.get("makerMarket");
+  get makerMarketId(): BigInt {
+    let value = this.get("makerMarketId");
     return value.toBigInt();
   }
 
-  set makerMarket(value: BigInt) {
-    this.set("makerMarket", Value.fromBigInt(value));
+  set makerMarketId(value: BigInt) {
+    this.set("makerMarketId", Value.fromBigInt(value));
+  }
+
+  get market(): string {
+    let value = this.get("market");
+    return value.toString();
+  }
+
+  set market(value: string) {
+    this.set("market", Value.fromString(value));
   }
 
   get takerUpdate_deltaWei_sign(): boolean {
@@ -392,22 +401,31 @@ export class Short extends Entity {
     this.set("accountNumber", Value.fromBigInt(value));
   }
 
-  get takerMarket(): BigInt {
-    let value = this.get("takerMarket");
+  get takerMarketId(): BigInt {
+    let value = this.get("takerMarketId");
     return value.toBigInt();
   }
 
-  set takerMarket(value: BigInt) {
-    this.set("takerMarket", Value.fromBigInt(value));
+  set takerMarketId(value: BigInt) {
+    this.set("takerMarketId", Value.fromBigInt(value));
   }
 
-  get makerMarket(): BigInt {
-    let value = this.get("makerMarket");
+  get makerMarketId(): BigInt {
+    let value = this.get("makerMarketId");
     return value.toBigInt();
   }
 
-  set makerMarket(value: BigInt) {
-    this.set("makerMarket", Value.fromBigInt(value));
+  set makerMarketId(value: BigInt) {
+    this.set("makerMarketId", Value.fromBigInt(value));
+  }
+
+  get market(): string {
+    let value = this.get("market");
+    return value.toString();
+  }
+
+  set market(value: string) {
+    this.set("market", Value.fromString(value));
   }
 
   get takerUpdate_deltaWei_sign(): boolean {

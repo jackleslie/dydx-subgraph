@@ -11,8 +11,9 @@ type Long @entity {
   id: ID!
   accountOwner: Bytes! # address
   accountNumber: BigInt! # uint256
-  takerMarket: BigInt! # uint256
-  makerMarket: BigInt! # uint256
+  takerMarketId: BigInt! # uint256
+  makerMarketId: BigInt! # uint256
+  market: String!
   takerUpdate_deltaWei_sign: Boolean! # bool
   takerUpdate_deltaWei_value: BigInt! # uint256
   takerUpdate_newPar_sign: Boolean! # bool
@@ -34,8 +35,9 @@ type Short @entity {
   id: ID!
   accountOwner: Bytes! # address
   accountNumber: BigInt! # uint256
-  takerMarket: BigInt! # uint256
-  makerMarket: BigInt! # uint256
+  takerMarketId: BigInt! # uint256
+  makerMarketId: BigInt! # uint256
+  market: String!
   takerUpdate_deltaWei_sign: Boolean! # bool
   takerUpdate_deltaWei_value: BigInt! # uint256
   takerUpdate_newPar_sign: Boolean! # bool

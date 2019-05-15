@@ -45,8 +45,12 @@ export function handleLogBuy(event: LogBuy): void {
     );
     entity.accountOwner = event.params.accountOwner;
     entity.accountNumber = event.params.accountNumber;
-    entity.takerMarket = event.params.takerMarket;
-    entity.makerMarket = event.params.makerMarket;
+    entity.takerMarketId = event.params.takerMarket;
+    entity.makerMarketId = event.params.makerMarket;
+    entity.market =
+      getTokenSymbol(event.params.makerMarket.toString()) +
+      "-" +
+      getTokenSymbol(event.params.takerMarket.toString());
     entity.takerUpdate_deltaWei_sign = event.params.takerUpdate.deltaWei.sign;
     entity.takerUpdate_deltaWei_value = event.params.takerUpdate.deltaWei.value;
     entity.takerUpdate_newPar_sign = event.params.takerUpdate.newPar.sign;
@@ -105,8 +109,12 @@ export function handleLogSell(event: LogSell): void {
   );
   entity.accountOwner = event.params.accountOwner;
   entity.accountNumber = event.params.accountNumber;
-  entity.takerMarket = event.params.takerMarket;
-  entity.makerMarket = event.params.makerMarket;
+  entity.takerMarketId = event.params.takerMarket;
+  entity.makerMarketId = event.params.makerMarket;
+  entity.market =
+    getTokenSymbol(event.params.takerMarket.toString()) +
+    "-" +
+    getTokenSymbol(event.params.makerMarket.toString());
   entity.takerUpdate_deltaWei_sign = event.params.takerUpdate.deltaWei.sign;
   entity.takerUpdate_deltaWei_value = event.params.takerUpdate.deltaWei.value;
   entity.takerUpdate_newPar_sign = event.params.takerUpdate.newPar.sign;
