@@ -5,6 +5,8 @@ type Market @entity {
   borrowIndex: BigInt
   supplyIndex: BigInt
   lastIndexUpdate: BigInt
+  borrowed: BigInt
+  supplied: BigInt
 }
 
 type Long @entity {

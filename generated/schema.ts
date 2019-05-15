@@ -108,6 +108,40 @@ export class Market extends Entity {
       this.set("lastIndexUpdate", Value.fromBigInt(value as BigInt));
     }
   }
+
+  get borrowed(): BigInt | null {
+    let value = this.get("borrowed");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set borrowed(value: BigInt | null) {
+    if (value === null) {
+      this.unset("borrowed");
+    } else {
+      this.set("borrowed", Value.fromBigInt(value as BigInt));
+    }
+  }
+
+  get supplied(): BigInt | null {
+    let value = this.get("supplied");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set supplied(value: BigInt | null) {
+    if (value === null) {
+      this.unset("supplied");
+    } else {
+      this.set("supplied", Value.fromBigInt(value as BigInt));
+    }
+  }
 }
 
 export class Long extends Entity {
