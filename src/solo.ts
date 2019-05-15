@@ -17,10 +17,18 @@ export function handleLogIndexUpdate(event: LogIndexUpdate): void {
 }
 
 export function handleLogAddMarket(event: LogAddMarket): void {
-  let entity = new Market(event.params.marketId.toString());
-  entity.marketId = event.params.marketId;
-  entity.token = event.params.token;
+  let id = event.params.marketId.toString();
+  let entity = new Market(id);
+  entity.tokenAddress = event.params.token;
+  entity.tokenSymbol = getTokenSymbol(id);
   entity.save();
+}
+
+function getTokenSymbol(id: String): String {
+  if (id == "0") return "WETH";
+  else if (id == "1") return "DAI";
+  else if (id == "2") return "USDC";
+  else return id;
 }
 
 export function handleLogBuy(event: LogBuy): void {

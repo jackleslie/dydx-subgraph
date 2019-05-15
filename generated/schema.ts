@@ -40,22 +40,30 @@ export class Market extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get marketId(): BigInt {
-    let value = this.get("marketId");
-    return value.toBigInt();
-  }
-
-  set marketId(value: BigInt) {
-    this.set("marketId", Value.fromBigInt(value));
-  }
-
-  get token(): Bytes {
-    let value = this.get("token");
+  get tokenAddress(): Bytes {
+    let value = this.get("tokenAddress");
     return value.toBytes();
   }
 
-  set token(value: Bytes) {
-    this.set("token", Value.fromBytes(value));
+  set tokenAddress(value: Bytes) {
+    this.set("tokenAddress", Value.fromBytes(value));
+  }
+
+  get tokenSymbol(): string | null {
+    let value = this.get("tokenSymbol");
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set tokenSymbol(value: string | null) {
+    if (value === null) {
+      this.unset("tokenSymbol");
+    } else {
+      this.set("tokenSymbol", Value.fromString(value as string));
+    }
   }
 
   get borrowIndex(): BigInt | null {

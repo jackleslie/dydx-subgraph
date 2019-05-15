@@ -1,7 +1,7 @@
 type Market @entity {
   id: ID!
-  marketId: BigInt! # uint256
-  token: Bytes! # address
+  tokenAddress: Bytes! # address
+  tokenSymbol: String
   borrowIndex: BigInt
   supplyIndex: BigInt
   lastIndexUpdate: BigInt
