@@ -100,38 +100,46 @@ export function handleLogBuy(event: LogBuy): void {
 }
 
 export function handleLogSell(event: LogSell): void {
-  let entity = new Short(
-    event.params.accountOwner.toHexString() +
+  if (
+    event.params.takerUpdate.deltaWei.sign == false &&
+    event.params.takerUpdate.newPar.sign == false
+  ) {
+    let entity = new Short(
+      event.params.accountOwner.toHexString() +
+        "-" +
+        event.params.accountNumber.toString() +
+        "-" +
+        event.params.takerMarket.toString()
+    );
+    entity.accountOwner = event.params.accountOwner;
+    entity.accountNumber = event.params.accountNumber;
+    entity.takerMarketId = event.params.takerMarket;
+    entity.makerMarketId = event.params.makerMarket;
+    entity.market =
+      getTokenSymbol(event.params.takerMarket.toString()) +
       "-" +
-      event.params.accountNumber.toString() +
-      "-" +
-      event.params.takerMarket.toString()
-  );
-  entity.accountOwner = event.params.accountOwner;
-  entity.accountNumber = event.params.accountNumber;
-  entity.takerMarketId = event.params.takerMarket;
-  entity.makerMarketId = event.params.makerMarket;
-  entity.market =
-    getTokenSymbol(event.params.takerMarket.toString()) +
-    "-" +
-    getTokenSymbol(event.params.makerMarket.toString());
-  entity.takerUpdate_deltaWei_sign = event.params.takerUpdate.deltaWei.sign;
-  entity.takerUpdate_deltaWei_value = event.params.takerUpdate.deltaWei.value;
-  entity.takerUpdate_newPar_sign = event.params.takerUpdate.newPar.sign;
-  entity.takerUpdate_newPar_value = event.params.takerUpdate.newPar.value;
-  entity.makerUpdate_deltaWei_sign = event.params.makerUpdate.deltaWei.sign;
-  entity.makerUpdate_deltaWei_value = event.params.makerUpdate.deltaWei.value;
-  entity.makerUpdate_newPar_sign = event.params.makerUpdate.newPar.sign;
-  entity.makerUpdate_newPar_value = event.params.makerUpdate.newPar.value;
-  entity.exchangeWrapper = event.params.exchangeWrapper;
-  entity.timestamp = event.block.timestamp;
-  entity.value = event.transaction.value;
-  entity.openPrice =
-    entity.makerUpdate_deltaWei_value.toBigDecimal() /
-    entity.takerUpdate_deltaWei_value.toBigDecimal();
-  entity.leverage =
-    entity.makerUpdate_deltaWei_value.toBigDecimal() /
-    (entity.makerUpdate_newPar_value.toBigDecimal() -
-      entity.makerUpdate_deltaWei_value.toBigDecimal());
-  entity.save();
+      getTokenSymbol(event.params.makerMarket.toString());
+    entity.takerUpdate_deltaWei_sign = event.params.takerUpdate.deltaWei.sign;
+    entity.takerUpdate_deltaWei_value = event.params.takerUpdate.deltaWei.value;
+    entity.takerUpdate_newPar_sign = event.params.takerUpdate.newPar.sign;
+    entity.takerUpdate_newPar_value = event.params.takerUpdate.newPar.value;
+    entity.makerUpdate_deltaWei_sign = event.params.makerUpdate.deltaWei.sign;
+    entity.makerUpdate_deltaWei_value = event.params.makerUpdate.deltaWei.value;
+    entity.makerUpdate_newPar_sign = event.params.makerUpdate.newPar.sign;
+    entity.makerUpdate_newPar_value = event.params.makerUpdate.newPar.value;
+    entity.exchangeWrapper = event.params.exchangeWrapper;
+    entity.timestamp = event.block.timestamp;
+    entity.amount = event.params.makerUpdate.newPar.value;
+    entity.marginDeposit =
+      event.params.makerUpdate.newPar.value -
+      event.params.makerUpdate.deltaWei.value;
+    entity.openPrice =
+      entity.makerUpdate_deltaWei_value.toBigDecimal() /
+      entity.takerUpdate_deltaWei_value.toBigDecimal();
+    entity.leverage =
+      entity.makerUpdate_deltaWei_value.toBigDecimal() /
+      (entity.makerUpdate_newPar_value.toBigDecimal() -
+        entity.makerUpdate_deltaWei_value.toBigDecimal());
+    entity.save();
+  }
 }
