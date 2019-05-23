@@ -59,6 +59,7 @@ Here are some example queries:
     openPrice
   }
 }
+```
 
 ### Display closed short positions for given account
 ```
