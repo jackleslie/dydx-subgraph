@@ -29,7 +29,7 @@ The following entities are available as a part of the subgraph:
 - `leverage` - Initial leverage
 - `expires` - Time the position expires
 - `openPrice` - Price the position opened at
-- `closed` - Indicates if the position is open or closed/liquidated
+- `status` - Can be "Open", "Closed" or "Liquidated"
 
 ## Queries
 Here are some example queries:
@@ -57,6 +57,7 @@ Here are some example queries:
     leverage
     expires
     openPrice
+    status
   }
 }
 ```
@@ -64,7 +65,7 @@ Here are some example queries:
 ### Display closed short positions for given account
 ```
 {
-  shorts(where: { accountOwner: "...", closed: true }) {
+  shorts(where: { accountOwner: "...", status: "Closed" }) {
     id
     market
     timestamp
@@ -80,7 +81,7 @@ Here are some example queries:
 ### Display open long positions which expire on a given day
 ```
 {
-  longs(where: { expires: "...", closed: false }) {
+  longs(where: { expires: "...", status: "Open" }) {
     id
     market
     timestamp
