@@ -272,13 +272,13 @@ export class Long extends Entity {
     this.set("openPrice", Value.fromBigDecimal(value));
   }
 
-  get closed(): boolean {
-    let value = this.get("closed");
-    return value.toBoolean();
+  get status(): string {
+    let value = this.get("status");
+    return value.toString();
   }
 
-  set closed(value: boolean) {
-    this.set("closed", Value.fromBoolean(value));
+  set status(value: string) {
+    this.set("status", Value.fromString(value));
   }
 }
 
@@ -444,12 +444,12 @@ export class Short extends Entity {
     }
   }
 
-  get closed(): boolean {
-    let value = this.get("closed");
-    return value.toBoolean();
+  get status(): string {
+    let value = this.get("status");
+    return value.toString();
   }
 
-  set closed(value: boolean) {
-    this.set("closed", Value.fromBoolean(value));
+  set status(value: string) {
+    this.set("status", Value.fromString(value));
   }
 }

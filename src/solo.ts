@@ -52,16 +52,6 @@ export function handleLogBuy(event: LogBuy): void {
       getTokenSymbol(event.params.makerMarket.toString()) +
       "-" +
       getTokenSymbol(event.params.takerMarket.toString());
-    /*
-    entity.takerUpdate_deltaWei_sign = event.params.takerUpdate.deltaWei.sign;
-    entity.takerUpdate_deltaWei_value = event.params.takerUpdate.deltaWei.value;
-    entity.takerUpdate_newPar_sign = event.params.takerUpdate.newPar.sign;
-    entity.takerUpdate_newPar_value = event.params.takerUpdate.newPar.value;
-    entity.makerUpdate_deltaWei_sign = event.params.makerUpdate.deltaWei.sign;
-    entity.makerUpdate_deltaWei_value = event.params.makerUpdate.deltaWei.value;
-    entity.makerUpdate_newPar_sign = event.params.makerUpdate.newPar.sign;
-    entity.makerUpdate_newPar_value = event.params.makerUpdate.newPar.value;
-    */
     entity.exchangeWrapper = event.params.exchangeWrapper;
     entity.timestamp = event.block.timestamp;
     entity.amount = event.params.makerUpdate.newPar.value;
@@ -75,7 +65,7 @@ export function handleLogBuy(event: LogBuy): void {
       event.params.makerUpdate.newPar.value.toBigDecimal() /
       (event.params.makerUpdate.newPar.value.toBigDecimal() -
         event.params.makerUpdate.deltaWei.value.toBigDecimal());
-    entity.closed = false;
+    entity.status = "Open";
     entity.save();
   } else if (
     event.params.takerUpdate.deltaWei.sign == false &&
@@ -92,14 +82,14 @@ export function handleLogBuy(event: LogBuy): void {
     if (longEntity != null) {
       longEntity.amount = event.params.takerUpdate.newPar.value;
       if (event.params.makerUpdate.newPar.value.toString() == "0") {
-        longEntity.closed = true;
+        longEntity.status = "Closed";
       }
       longEntity.save();
     }
     if (shortEntity != null) {
       shortEntity.amount = event.params.makerUpdate.newPar.value;
       if (event.params.makerUpdate.newPar.value.toString() == "0") {
-        shortEntity.closed = true;
+        shortEntity.status = "Closed";
       }
       shortEntity.save();
     }
@@ -126,16 +116,6 @@ export function handleLogSell(event: LogSell): void {
       getTokenSymbol(event.params.takerMarket.toString()) +
       "-" +
       getTokenSymbol(event.params.makerMarket.toString());
-    /*
-    entity.takerUpdate_deltaWei_sign = event.params.takerUpdate.deltaWei.sign;
-    entity.takerUpdate_deltaWei_value = event.params.takerUpdate.deltaWei.value;
-    entity.takerUpdate_newPar_sign = event.params.takerUpdate.newPar.sign;
-    entity.takerUpdate_newPar_value = event.params.takerUpdate.newPar.value;
-    entity.makerUpdate_deltaWei_sign = event.params.makerUpdate.deltaWei.sign;
-    entity.makerUpdate_deltaWei_value = event.params.makerUpdate.deltaWei.value;
-    entity.makerUpdate_newPar_sign = event.params.makerUpdate.newPar.sign;
-    entity.makerUpdate_newPar_value = event.params.makerUpdate.newPar.value;
-    */
     entity.exchangeWrapper = event.params.exchangeWrapper;
     entity.timestamp = event.block.timestamp;
     entity.amount = event.params.takerUpdate.newPar.value;
@@ -149,7 +129,7 @@ export function handleLogSell(event: LogSell): void {
       event.params.makerUpdate.deltaWei.value.toBigDecimal() /
       (event.params.makerUpdate.newPar.value.toBigDecimal() -
         event.params.makerUpdate.deltaWei.value.toBigDecimal());
-    entity.closed = false;
+    entity.status = "Open";
     entity.save();
   }
 }
@@ -165,12 +145,12 @@ export function handleLogLiquidate(event: LogLiquidate): void {
   let shortEntity = Short.load(id);
   if (longEntity != null) {
     longEntity.amount = event.params.liquidOwedUpdate.newPar.value;
-    longEntity.closed = true;
+    longEntity.status = "Liquidated";
     longEntity.save();
   }
   if (shortEntity != null) {
     shortEntity.amount = event.params.liquidOwedUpdate.newPar.value;
-    shortEntity.closed = true;
+    shortEntity.status = "Liquidated";
     shortEntity.save();
   }
 }
