@@ -88,7 +88,7 @@ export function handleLogBuy(event: LogBuy): void {
       event.params.makerMarket.toString();
     let entity = Long.load(id);
     if (entity != null) {
-      entity.amount = event.params.makerUpdate.newPar.value;
+      entity.amount = event.params.takerUpdate.newPar.value;
       if (event.params.makerUpdate.newPar.value.toString() == "0") {
         entity.closed = true;
       }
