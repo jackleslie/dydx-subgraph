@@ -165,10 +165,12 @@ export function handleLogLiquidate(event: LogLiquidate): void {
   let shortEntity = Short.load(id);
   if (longEntity != null) {
     longEntity.amount = event.params.liquidOwedUpdate.newPar.value;
+    longEntity.closed = true;
     longEntity.save();
   }
   if (shortEntity != null) {
     shortEntity.amount = event.params.liquidOwedUpdate.newPar.value;
+    shortEntity.closed = true;
     shortEntity.save();
   }
 }
