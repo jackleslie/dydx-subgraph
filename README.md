@@ -29,7 +29,7 @@ The following entities are available as a part of the subgraph:
 - `leverage` - Initial leverage
 - `expires` - Time the position expires
 - `openPrice` - Price the position opened at
-- `closed` - Indicated if the position is open or closed/liquidated
+- `closed` - Indicates if the position is open or closed/liquidated
 
 ## Queries
 Here are some example queries:
