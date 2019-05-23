@@ -51,6 +51,7 @@ export function handleLogBuy(event: LogBuy): void {
       getTokenSymbol(event.params.makerMarket.toString()) +
       "-" +
       getTokenSymbol(event.params.takerMarket.toString());
+    /*
     entity.takerUpdate_deltaWei_sign = event.params.takerUpdate.deltaWei.sign;
     entity.takerUpdate_deltaWei_value = event.params.takerUpdate.deltaWei.value;
     entity.takerUpdate_newPar_sign = event.params.takerUpdate.newPar.sign;
@@ -59,6 +60,7 @@ export function handleLogBuy(event: LogBuy): void {
     entity.makerUpdate_deltaWei_value = event.params.makerUpdate.deltaWei.value;
     entity.makerUpdate_newPar_sign = event.params.makerUpdate.newPar.sign;
     entity.makerUpdate_newPar_value = event.params.makerUpdate.newPar.value;
+    */
     entity.exchangeWrapper = event.params.exchangeWrapper;
     entity.timestamp = event.block.timestamp;
     entity.amount = event.params.makerUpdate.newPar.value;
@@ -66,17 +68,17 @@ export function handleLogBuy(event: LogBuy): void {
       event.params.makerUpdate.newPar.value -
       event.params.makerUpdate.deltaWei.value;
     entity.openPrice =
-      entity.takerUpdate_deltaWei_value.toBigDecimal() /
-      entity.makerUpdate_deltaWei_value.toBigDecimal();
+      event.params.takerUpdate.deltaWei.value.toBigDecimal() /
+      event.params.makerUpdate.deltaWei.value.toBigDecimal();
     entity.leverage =
-      entity.makerUpdate_newPar_value.toBigDecimal() /
-      (entity.makerUpdate_newPar_value.toBigDecimal() -
-        entity.makerUpdate_deltaWei_value.toBigDecimal());
-
+      event.params.makerUpdate.newPar.value.toBigDecimal() /
+      (event.params.makerUpdate.newPar.value.toBigDecimal() -
+        event.params.makerUpdate.deltaWei.value.toBigDecimal());
+    entity.closed = false;
     entity.save();
   } else if (
-    event.params.makerUpdate.deltaWei.sign == true &&
-    event.params.makerUpdate.newPar.sign == false
+    event.params.takerUpdate.deltaWei.sign == false &&
+    event.params.takerUpdate.newPar.sign == true
   ) {
     let id =
       event.params.accountOwner.toHexString() +
@@ -86,15 +88,11 @@ export function handleLogBuy(event: LogBuy): void {
       event.params.makerMarket.toString();
     let entity = Long.load(id);
     if (entity != null) {
+      entity.amount = event.params.makerUpdate.newPar.value;
       if (event.params.makerUpdate.newPar.value.toString() == "0") {
-        // entity.amount = event.params.makerUpdate.newPar.value;
-        store.remove("Long", id);
-      } else {
-        entity.amount =
-          event.params.takerUpdate.newPar.value -
-          event.params.takerUpdate.deltaWei.value;
-        entity.save();
+        entity.closed = true;
       }
+      entity.save();
     }
   }
 }

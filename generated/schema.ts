@@ -193,78 +193,6 @@ export class Long extends Entity {
     this.set("market", Value.fromString(value));
   }
 
-  get takerUpdate_deltaWei_sign(): boolean {
-    let value = this.get("takerUpdate_deltaWei_sign");
-    return value.toBoolean();
-  }
-
-  set takerUpdate_deltaWei_sign(value: boolean) {
-    this.set("takerUpdate_deltaWei_sign", Value.fromBoolean(value));
-  }
-
-  get takerUpdate_deltaWei_value(): BigInt {
-    let value = this.get("takerUpdate_deltaWei_value");
-    return value.toBigInt();
-  }
-
-  set takerUpdate_deltaWei_value(value: BigInt) {
-    this.set("takerUpdate_deltaWei_value", Value.fromBigInt(value));
-  }
-
-  get takerUpdate_newPar_sign(): boolean {
-    let value = this.get("takerUpdate_newPar_sign");
-    return value.toBoolean();
-  }
-
-  set takerUpdate_newPar_sign(value: boolean) {
-    this.set("takerUpdate_newPar_sign", Value.fromBoolean(value));
-  }
-
-  get takerUpdate_newPar_value(): BigInt {
-    let value = this.get("takerUpdate_newPar_value");
-    return value.toBigInt();
-  }
-
-  set takerUpdate_newPar_value(value: BigInt) {
-    this.set("takerUpdate_newPar_value", Value.fromBigInt(value));
-  }
-
-  get makerUpdate_deltaWei_sign(): boolean {
-    let value = this.get("makerUpdate_deltaWei_sign");
-    return value.toBoolean();
-  }
-
-  set makerUpdate_deltaWei_sign(value: boolean) {
-    this.set("makerUpdate_deltaWei_sign", Value.fromBoolean(value));
-  }
-
-  get makerUpdate_deltaWei_value(): BigInt {
-    let value = this.get("makerUpdate_deltaWei_value");
-    return value.toBigInt();
-  }
-
-  set makerUpdate_deltaWei_value(value: BigInt) {
-    this.set("makerUpdate_deltaWei_value", Value.fromBigInt(value));
-  }
-
-  get makerUpdate_newPar_sign(): boolean {
-    let value = this.get("makerUpdate_newPar_sign");
-    return value.toBoolean();
-  }
-
-  set makerUpdate_newPar_sign(value: boolean) {
-    this.set("makerUpdate_newPar_sign", Value.fromBoolean(value));
-  }
-
-  get makerUpdate_newPar_value(): BigInt {
-    let value = this.get("makerUpdate_newPar_value");
-    return value.toBigInt();
-  }
-
-  set makerUpdate_newPar_value(value: BigInt) {
-    this.set("makerUpdate_newPar_value", Value.fromBigInt(value));
-  }
-
   get exchangeWrapper(): Bytes {
     let value = this.get("exchangeWrapper");
     return value.toBytes();
@@ -335,21 +263,22 @@ export class Long extends Entity {
     }
   }
 
-  get openPrice(): BigDecimal | null {
+  get openPrice(): BigDecimal {
     let value = this.get("openPrice");
-    if (value === null) {
-      return null;
-    } else {
-      return value.toBigDecimal();
-    }
+    return value.toBigDecimal();
   }
 
-  set openPrice(value: BigDecimal | null) {
-    if (value === null) {
-      this.unset("openPrice");
-    } else {
-      this.set("openPrice", Value.fromBigDecimal(value as BigDecimal));
-    }
+  set openPrice(value: BigDecimal) {
+    this.set("openPrice", Value.fromBigDecimal(value));
+  }
+
+  get closed(): boolean {
+    let value = this.get("closed");
+    return value.toBoolean();
+  }
+
+  set closed(value: boolean) {
+    this.set("closed", Value.fromBoolean(value));
   }
 }
 
