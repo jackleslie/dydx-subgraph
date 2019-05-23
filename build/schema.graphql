@@ -1,42 +1,76 @@
 type Market @entity {
+  "Unique ID for a market"
   id: ID!
-  tokenAddress: Bytes! # address
+  "Contract address for the market token"
+  tokenAddress: Bytes!
+  "Symbol for the market token"
   tokenSymbol: String
+  "Amount of borrow interest accrued"
   borrowIndex: BigInt
+  "Amount of supply interest accrued"
   supplyIndex: BigInt
+  "Time of last index update"
   lastIndexUpdate: BigInt
 }
 
 type Long @entity {
+  "Unique ID for a position"
   id: ID!
-  accountOwner: Bytes! # address
-  accountNumber: BigInt! # uint256
-  takerMarketId: BigInt! # uint256
-  makerMarketId: BigInt! # uint256
+  "Position owner's address"
+  accountOwner: Bytes!
+  "Position account number"
+  accountNumber: BigInt!
+  "ID of the taker market"
+  takerMarketId: BigInt!
+  "ID of the maker market"
+  makerMarketId: BigInt!
+  "String representation of position market"
   market: String!
-  exchangeWrapper: Bytes! # address
-  timestamp: BigInt! # uint128
+  "Contract address for the dYdX exchange wrapper"
+  exchangeWrapper: Bytes!
+  "Time the position was opened"
+  timestamp: BigInt!
+  "Current position amount"
   amount: BigInt!
+  "Initial deposit amount"
   marginDeposit: BigInt!
+  "Initial leverage"
   leverage: BigDecimal
+  "Time the position expires"
   expires: BigInt
+  "Price the position opened at"
   openPrice: BigDecimal!
+  "Can be \"Open\", \"Closed\" or \"Liquidated\""
   status: String!
 }
 
 type Short @entity {
+  "Unique ID for a position"
   id: ID!
-  accountOwner: Bytes! # address
-  accountNumber: BigInt! # uint256
-  takerMarketId: BigInt! # uint256
-  makerMarketId: BigInt! # uint256
+  "Position owner's address"
+  accountOwner: Bytes!
+  "Position account number"
+  accountNumber: BigInt!
+  "ID of the taker market"
+  takerMarketId: BigInt!
+  "ID of the maker market"
+  makerMarketId: BigInt!
+  "String representation of position market"
   market: String!
-  exchangeWrapper: Bytes! # address
-  timestamp: BigInt! # uint128
+  "Contract address for the dYdX exchange wrapper"
+  exchangeWrapper: Bytes!
+  "Time the position was opened"
+  timestamp: BigInt!
+  "Current position amount"
   amount: BigInt!
+  "Initial deposit amount"
   marginDeposit: BigInt!
+  "Initial leverage"
   leverage: BigDecimal
+  "Time the position expires"
   expires: BigInt
-  openPrice: BigDecimal
+  "Price the position opened at"
+  openPrice: BigDecimal!
+  "Can be \"Open\", \"Closed\" or \"Liquidated\""
   status: String!
 }

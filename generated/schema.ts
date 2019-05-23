@@ -427,21 +427,13 @@ export class Short extends Entity {
     }
   }
 
-  get openPrice(): BigDecimal | null {
+  get openPrice(): BigDecimal {
     let value = this.get("openPrice");
-    if (value === null) {
-      return null;
-    } else {
-      return value.toBigDecimal();
-    }
+    return value.toBigDecimal();
   }
 
-  set openPrice(value: BigDecimal | null) {
-    if (value === null) {
-      this.unset("openPrice");
-    } else {
-      this.set("openPrice", Value.fromBigDecimal(value as BigDecimal));
-    }
+  set openPrice(value: BigDecimal) {
+    this.set("openPrice", Value.fromBigDecimal(value));
   }
 
   get status(): string {

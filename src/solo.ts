@@ -80,16 +80,18 @@ export function handleLogBuy(event: LogBuy): void {
     let longEntity = Long.load(id);
     let shortEntity = Short.load(id);
     if (longEntity != null) {
-      longEntity.amount = event.params.takerUpdate.newPar.value;
       if (event.params.makerUpdate.newPar.value.toString() == "0") {
         longEntity.status = "Closed";
+      } else {
+        longEntity.amount = event.params.takerUpdate.newPar.value;
       }
       longEntity.save();
     }
     if (shortEntity != null) {
-      shortEntity.amount = event.params.makerUpdate.newPar.value;
       if (event.params.makerUpdate.newPar.value.toString() == "0") {
         shortEntity.status = "Closed";
+      } else {
+        shortEntity.amount = event.params.makerUpdate.newPar.value;
       }
       shortEntity.save();
     }
@@ -144,12 +146,10 @@ export function handleLogLiquidate(event: LogLiquidate): void {
   let longEntity = Long.load(id);
   let shortEntity = Short.load(id);
   if (longEntity != null) {
-    longEntity.amount = event.params.liquidOwedUpdate.newPar.value;
     longEntity.status = "Liquidated";
     longEntity.save();
   }
   if (shortEntity != null) {
-    shortEntity.amount = event.params.liquidOwedUpdate.newPar.value;
     shortEntity.status = "Liquidated";
     shortEntity.save();
   }
