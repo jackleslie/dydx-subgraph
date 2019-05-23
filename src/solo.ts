@@ -2,7 +2,8 @@ import {
   LogIndexUpdate,
   LogAddMarket,
   LogBuy,
-  LogSell
+  LogSell,
+  LogLiquidate
 } from "../generated/SoloMargin/SoloMargin";
 import { Market, Long, Short } from "../generated/schema";
 import { store } from "@graphprotocol/graph-ts";
@@ -150,5 +151,24 @@ export function handleLogSell(event: LogSell): void {
         event.params.makerUpdate.deltaWei.value.toBigDecimal());
     entity.closed = false;
     entity.save();
+  }
+}
+
+export function handleLogLiquidate(event: LogLiquidate): void {
+  let id =
+    event.params.liquidAccountOwner.toHexString() +
+    "-" +
+    event.params.liquidAccountNumber.toString() +
+    "-" +
+    event.params.owedMarket.toString();
+  let longEntity = Long.load(id);
+  let shortEntity = Short.load(id);
+  if (longEntity != null) {
+    longEntity.amount = event.params.liquidOwedUpdate.newPar.value;
+    longEntity.save();
+  }
+  if (shortEntity != null) {
+    shortEntity.amount = event.params.liquidOwedUpdate.newPar.value;
+    shortEntity.save();
   }
 }
