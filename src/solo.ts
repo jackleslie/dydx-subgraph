@@ -86,31 +86,21 @@ export function handleLogBuy(event: LogBuy): void {
       event.params.accountNumber.toString() +
       "-" +
       event.params.makerMarket.toString();
-    let entity = Long.load(id);
-    if (entity != null) {
-      entity.amount = event.params.takerUpdate.newPar.value;
+    let longEntity = Long.load(id);
+    let shortEntity = Short.load(id);
+    if (longEntity != null) {
+      longEntity.amount = event.params.takerUpdate.newPar.value;
       if (event.params.makerUpdate.newPar.value.toString() == "0") {
-        entity.closed = true;
+        longEntity.closed = true;
       }
-      entity.save();
+      longEntity.save();
     }
-  } else if (
-    event.params.makerUpdate.deltaWei.sign == true &&
-    event.params.makerUpdate.newPar.sign == false
-  ) {
-    let id =
-      event.params.accountOwner.toHexString() +
-      "-" +
-      event.params.accountNumber.toString() +
-      "-" +
-      event.params.makerMarket.toString();
-    let entity = Short.load(id);
-    if (entity != null) {
-      entity.amount = event.params.makerUpdate.newPar.value;
+    if (shortEntity != null) {
+      shortEntity.amount = event.params.makerUpdate.newPar.value;
       if (event.params.makerUpdate.newPar.value.toString() == "0") {
-        entity.closed = true;
+        shortEntity.closed = true;
       }
-      entity.save();
+      shortEntity.save();
     }
   }
 }
