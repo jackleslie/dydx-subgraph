@@ -1,5 +1,5 @@
 # dydx-subgraph
-Submission for The Graph + CoinList online hackathon.
+[Winning submission](https://medium.com/coinlist/announcing-the-winners-of-the-graph-coinlist-hackathon-c69e40af092f) for The Graph + CoinList online hackathon.
 
 ## Overview
 View your Long and Short positions on the dYdX protocol, and view basic Market information.
