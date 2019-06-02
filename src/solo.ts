@@ -3,17 +3,28 @@ import {
   LogAddMarket,
   LogBuy,
   LogSell,
-  LogLiquidate
+  LogLiquidate,
+  SoloMargin
 } from "../generated/SoloMargin/SoloMargin";
 import { Market, Long, Short } from "../generated/schema";
 import { store } from "@graphprotocol/graph-ts";
 
 export function handleLogIndexUpdate(event: LogIndexUpdate): void {
   let id = event.params.market.toString();
+  let contract = SoloMargin.bind(event.address);
   let entity = Market.load(id);
-  entity.borrowIndex = event.params.index.borrow;
-  entity.supplyIndex = event.params.index.supply;
   entity.lastIndexUpdate = event.params.index.lastUpdate;
+  entity.price = contract.getMarketPrice(event.params.market).value;
+  let totalPar = contract.getMarketTotalPar(event.marams.market);
+  entity.borrowed = totalPar.borrow;
+  entity.supplied = totalPar.supply;
+  let utilization = totalPar.borrow / totalPar.supply;
+  entity.utilization = utilization;
+  let borrowInterestRate =
+    0.1 * utilization + 0.1 * utilization ** 2 + 0.8 * utilization ** 5;
+  entity.borrowInterestRate = borrowInterestRate;
+  let supplyInterestRate = 0.85 * (borrowInterestRate * utilization);
+  entity.supplyInterestRate = supplyInterestRate;
   entity.save();
 }
 

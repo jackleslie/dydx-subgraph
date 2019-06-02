@@ -5,12 +5,20 @@ type Market @entity {
   tokenAddress: Bytes!
   "Symbol for the market token"
   tokenSymbol: String
-  "Amount of borrow interest accrued"
-  borrowIndex: BigInt
-  "Amount of supply interest accrued"
-  supplyIndex: BigInt
   "Time of last index update"
   lastIndexUpdate: BigInt
+  "Market price"
+  price: BigInt
+  "Total amount borrowed"
+  borrowed: BigInt
+  "Total amount supplied"
+  supplied: BigInt
+  "Current market utilization"
+  utilization: BigInt
+  "Borrow interest rate"
+  borrowInterestRate: BigInt
+  "Supply interest rate"
+  supplyInterestRate: BigInt
 }
 
 type Long @entity {

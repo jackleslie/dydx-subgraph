@@ -11,6 +11,8 @@ type Market @entity {
   supplyIndex: BigInt
   "Time of last index update"
   lastIndexUpdate: BigInt
+  "Market interest rate"
+  interestRate: BigInt
 }
 
 type Long @entity {
