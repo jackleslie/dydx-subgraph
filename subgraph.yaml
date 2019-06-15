@@ -12,7 +12,7 @@ dataSources:
       abi: SoloMargin
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.3
       language: wasm/assemblyscript
       entities:
         - Market
@@ -22,15 +22,15 @@ dataSources:
         - name: SoloMargin
           file: ./abis/SoloMargin.json
       eventHandlers:
-        - event: LogIndexUpdate(uint256,(uint96,uint96,uint32))
+        - event: LogIndexUpdate(indexed uint256,(uint96,uint96,uint32))
           handler: handleLogIndexUpdate
         - event: LogAddMarket(uint256,address)
           handler: handleLogAddMarket
-        - event: LogBuy(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
+        - event: LogBuy(indexed address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
           handler: handleLogBuy
-        - event: LogSell(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
+        - event: LogSell(indexed address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
           handler: handleLogSell
-        - event: LogLiquidate(address,uint256,address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)))
+        - event: LogLiquidate(indexed address,uint256,indexed address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)))
           handler: handleLogLiquidate
       file: ./src/solo.ts
   - kind: ethereum/contract
@@ -41,7 +41,7 @@ dataSources:
       abi: Expiry
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.3
       language: wasm/assemblyscript
       entities:
         - Long

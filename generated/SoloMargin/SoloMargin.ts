@@ -1378,11 +1378,26 @@ export class LogOperatorSet1__Params {
   }
 }
 
+export class SoloMargin__getAccountValuesResultValue0Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getAccountValuesResultValue1Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
 export class SoloMargin__getAccountValuesResult {
   value0: EthereumTuple;
   value1: EthereumTuple;
 
-  constructor(value0: EthereumTuple, value1: EthereumTuple) {
+  constructor(
+    value0: SoloMargin__getAccountValuesResultValue0Struct,
+    value1: SoloMargin__getAccountValuesResultValue1Struct
+  ) {
     this.value0 = value0;
     this.value1 = value1;
   }
@@ -1395,6 +1410,212 @@ export class SoloMargin__getAccountValuesResult {
   }
 }
 
+export class SoloMargin__getAccountValuesInputAccountStruct extends EthereumTuple {
+  get owner(): Address {
+    return this[0].toAddress();
+  }
+
+  get number(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketSpreadPremiumResultValue0Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getAccountParResultValue0Struct extends EthereumTuple {
+  get sign(): boolean {
+    return this[0].toBoolean();
+  }
+
+  get value(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class SoloMargin__getAccountParInputAccountStruct extends EthereumTuple {
+  get owner(): Address {
+    return this[0].toAddress();
+  }
+
+  get number(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarginRatioResultValue0Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketCurrentIndexResultValue0Struct extends EthereumTuple {
+  get borrow(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get supply(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get lastUpdate(): BigInt {
+    return this[2].toBigInt();
+  }
+}
+
+export class SoloMargin__getRiskParamsResultValue0Struct extends EthereumTuple {
+  get marginRatio(): SoloMargin__getRiskParamsResultValue0MarginRatioStruct {
+    return this[0].toTuple() as SoloMargin__getRiskParamsResultValue0MarginRatioStruct;
+  }
+
+  get liquidationSpread(): SoloMargin__getRiskParamsResultValue0LiquidationSpreadStruct {
+    return this[1].toTuple() as SoloMargin__getRiskParamsResultValue0LiquidationSpreadStruct;
+  }
+
+  get earningsRate(): SoloMargin__getRiskParamsResultValue0EarningsRateStruct {
+    return this[2].toTuple() as SoloMargin__getRiskParamsResultValue0EarningsRateStruct;
+  }
+
+  get minBorrowedValue(): SoloMargin__getRiskParamsResultValue0MinBorrowedValueStruct {
+    return this[3].toTuple() as SoloMargin__getRiskParamsResultValue0MinBorrowedValueStruct;
+  }
+}
+
+export class SoloMargin__getRiskParamsResultValue0MarginRatioStruct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getRiskParamsResultValue0LiquidationSpreadStruct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getRiskParamsResultValue0EarningsRateStruct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getRiskParamsResultValue0MinBorrowedValueStruct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getMinBorrowedValueResultValue0Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketPriceResultValue0Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketWithInfoResultValue0Struct extends EthereumTuple {
+  get token(): Address {
+    return this[0].toAddress();
+  }
+
+  get totalPar(): SoloMargin__getMarketWithInfoResultValue0TotalParStruct {
+    return this[1].toTuple() as SoloMargin__getMarketWithInfoResultValue0TotalParStruct;
+  }
+
+  get index(): SoloMargin__getMarketWithInfoResultValue0IndexStruct {
+    return this[2].toTuple() as SoloMargin__getMarketWithInfoResultValue0IndexStruct;
+  }
+
+  get priceOracle(): Address {
+    return this[3].toAddress();
+  }
+
+  get interestSetter(): Address {
+    return this[4].toAddress();
+  }
+
+  get marginPremium(): SoloMargin__getMarketWithInfoResultValue0MarginPremiumStruct {
+    return this[5].toTuple() as SoloMargin__getMarketWithInfoResultValue0MarginPremiumStruct;
+  }
+
+  get spreadPremium(): SoloMargin__getMarketWithInfoResultValue0SpreadPremiumStruct {
+    return this[6].toTuple() as SoloMargin__getMarketWithInfoResultValue0SpreadPremiumStruct;
+  }
+
+  get isClosing(): boolean {
+    return this[7].toBoolean();
+  }
+}
+
+export class SoloMargin__getMarketWithInfoResultValue0TotalParStruct extends EthereumTuple {
+  get borrow(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get supply(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketWithInfoResultValue0IndexStruct extends EthereumTuple {
+  get borrow(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get supply(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get lastUpdate(): BigInt {
+    return this[2].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketWithInfoResultValue0MarginPremiumStruct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketWithInfoResultValue0SpreadPremiumStruct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketWithInfoResultValue1Struct extends EthereumTuple {
+  get borrow(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get supply(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get lastUpdate(): BigInt {
+    return this[2].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketWithInfoResultValue2Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketWithInfoResultValue3Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
 export class SoloMargin__getMarketWithInfoResult {
   value0: EthereumTuple;
   value1: EthereumTuple;
@@ -1402,10 +1623,10 @@ export class SoloMargin__getMarketWithInfoResult {
   value3: EthereumTuple;
 
   constructor(
-    value0: EthereumTuple,
-    value1: EthereumTuple,
-    value2: EthereumTuple,
-    value3: EthereumTuple
+    value0: SoloMargin__getMarketWithInfoResultValue0Struct,
+    value1: SoloMargin__getMarketWithInfoResultValue1Struct,
+    value2: SoloMargin__getMarketWithInfoResultValue2Struct,
+    value3: SoloMargin__getMarketWithInfoResultValue3Struct
   ) {
     this.value0 = value0;
     this.value1 = value1;
@@ -1423,11 +1644,204 @@ export class SoloMargin__getMarketWithInfoResult {
   }
 }
 
+export class SoloMargin__getLiquidationSpreadResultValue0Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getAccountWeiResultValue0Struct extends EthereumTuple {
+  get sign(): boolean {
+    return this[0].toBoolean();
+  }
+
+  get value(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class SoloMargin__getAccountWeiInputAccountStruct extends EthereumTuple {
+  get owner(): Address {
+    return this[0].toAddress();
+  }
+
+  get number(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketTotalParResultValue0Struct extends EthereumTuple {
+  get borrow(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get supply(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class SoloMargin__getLiquidationSpreadForPairResultValue0Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getNumExcessTokensResultValue0Struct extends EthereumTuple {
+  get sign(): boolean {
+    return this[0].toBoolean();
+  }
+
+  get value(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketCachedIndexResultValue0Struct extends EthereumTuple {
+  get borrow(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get supply(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get lastUpdate(): BigInt {
+    return this[2].toBigInt();
+  }
+}
+
+export class SoloMargin__getAccountStatusInputAccountStruct extends EthereumTuple {
+  get owner(): Address {
+    return this[0].toAddress();
+  }
+
+  get number(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class SoloMargin__getEarningsRateResultValue0Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getRiskLimitsResultValue0Struct extends EthereumTuple {
+  get marginRatioMax(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get liquidationSpreadMax(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get earningsRateMax(): BigInt {
+    return this[2].toBigInt();
+  }
+
+  get marginPremiumMax(): BigInt {
+    return this[3].toBigInt();
+  }
+
+  get spreadPremiumMax(): BigInt {
+    return this[4].toBigInt();
+  }
+
+  get minBorrowedValueMax(): BigInt {
+    return this[5].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketResultValue0Struct extends EthereumTuple {
+  get token(): Address {
+    return this[0].toAddress();
+  }
+
+  get totalPar(): SoloMargin__getMarketResultValue0TotalParStruct {
+    return this[1].toTuple() as SoloMargin__getMarketResultValue0TotalParStruct;
+  }
+
+  get index(): SoloMargin__getMarketResultValue0IndexStruct {
+    return this[2].toTuple() as SoloMargin__getMarketResultValue0IndexStruct;
+  }
+
+  get priceOracle(): Address {
+    return this[3].toAddress();
+  }
+
+  get interestSetter(): Address {
+    return this[4].toAddress();
+  }
+
+  get marginPremium(): SoloMargin__getMarketResultValue0MarginPremiumStruct {
+    return this[5].toTuple() as SoloMargin__getMarketResultValue0MarginPremiumStruct;
+  }
+
+  get spreadPremium(): SoloMargin__getMarketResultValue0SpreadPremiumStruct {
+    return this[6].toTuple() as SoloMargin__getMarketResultValue0SpreadPremiumStruct;
+  }
+
+  get isClosing(): boolean {
+    return this[7].toBoolean();
+  }
+}
+
+export class SoloMargin__getMarketResultValue0TotalParStruct extends EthereumTuple {
+  get borrow(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get supply(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketResultValue0IndexStruct extends EthereumTuple {
+  get borrow(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get supply(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get lastUpdate(): BigInt {
+    return this[2].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketResultValue0MarginPremiumStruct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketResultValue0SpreadPremiumStruct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getAdjustedAccountValuesResultValue0Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getAdjustedAccountValuesResultValue1Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
 export class SoloMargin__getAdjustedAccountValuesResult {
   value0: EthereumTuple;
   value1: EthereumTuple;
 
-  constructor(value0: EthereumTuple, value1: EthereumTuple) {
+  constructor(
+    value0: SoloMargin__getAdjustedAccountValuesResultValue0Struct,
+    value1: SoloMargin__getAdjustedAccountValuesResultValue1Struct
+  ) {
     this.value0 = value0;
     this.value1 = value1;
   }
@@ -1437,6 +1851,28 @@ export class SoloMargin__getAdjustedAccountValuesResult {
     map.set("value0", EthereumValue.fromTuple(this.value0));
     map.set("value1", EthereumValue.fromTuple(this.value1));
     return map;
+  }
+}
+
+export class SoloMargin__getAdjustedAccountValuesInputAccountStruct extends EthereumTuple {
+  get owner(): Address {
+    return this[0].toAddress();
+  }
+
+  get number(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketMarginPremiumResultValue0Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class SoloMargin__getMarketInterestRateResultValue0Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
   }
 }
 
@@ -1459,14 +1895,16 @@ export class SoloMargin extends SmartContract {
     return result[0].toAddress();
   }
 
-  getAccountValues(account: EthereumTuple): SoloMargin__getAccountValuesResult {
+  getAccountValues(
+    account: SoloMargin__getAccountValuesInputAccountStruct
+  ): SoloMargin__getAccountValuesResult {
     let result = super.call("getAccountValues", [
       EthereumValue.fromTuple(account)
     ]);
     return new SoloMargin__getAccountValuesResult(
-      result[0].toTuple(),
-      result[1].toTuple()
-    );
+      result[0].toTuple() as SoloMargin__getAccountValuesResultValue0Struct,
+      result[1].toTuple() as SoloMargin__getAccountValuesResultValue1Struct
+    ) as SoloMargin__getAccountValuesResult;
   }
 
   getMarketPriceOracle(marketId: BigInt): Address {
@@ -1483,15 +1921,25 @@ export class SoloMargin extends SmartContract {
     return result[0].toAddress();
   }
 
-  getMarketSpreadPremium(marketId: BigInt): EthereumTuple {
+  getMarketSpreadPremium(
+    marketId: BigInt
+  ): SoloMargin__getMarketSpreadPremiumResultValue0Struct {
     let result = super.call("getMarketSpreadPremium", [
       EthereumValue.fromUnsignedBigInt(marketId)
     ]);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getMarketSpreadPremiumResultValue0Struct;
   }
 
   getNumMarkets(): BigInt {
     let result = super.call("getNumMarkets", []);
+    return result[0].toBigInt();
+  }
+
+  ownerWithdrawUnsupportedTokens(token: Address, recipient: Address): BigInt {
+    let result = super.call("ownerWithdrawUnsupportedTokens", [
+      EthereumValue.fromAddress(token),
+      EthereumValue.fromAddress(recipient)
+    ]);
     return result[0].toBigInt();
   }
 
@@ -1503,24 +1951,29 @@ export class SoloMargin extends SmartContract {
     return result[0].toBoolean();
   }
 
-  getAccountPar(account: EthereumTuple, marketId: BigInt): EthereumTuple {
+  getAccountPar(
+    account: SoloMargin__getAccountParInputAccountStruct,
+    marketId: BigInt
+  ): SoloMargin__getAccountParResultValue0Struct {
     let result = super.call("getAccountPar", [
       EthereumValue.fromTuple(account),
       EthereumValue.fromUnsignedBigInt(marketId)
     ]);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getAccountParResultValue0Struct;
   }
 
-  getMarginRatio(): EthereumTuple {
+  getMarginRatio(): SoloMargin__getMarginRatioResultValue0Struct {
     let result = super.call("getMarginRatio", []);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getMarginRatioResultValue0Struct;
   }
 
-  getMarketCurrentIndex(marketId: BigInt): EthereumTuple {
+  getMarketCurrentIndex(
+    marketId: BigInt
+  ): SoloMargin__getMarketCurrentIndexResultValue0Struct {
     let result = super.call("getMarketCurrentIndex", [
       EthereumValue.fromUnsignedBigInt(marketId)
     ]);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getMarketCurrentIndexResultValue0Struct;
   }
 
   getMarketIsClosing(marketId: BigInt): boolean {
@@ -1530,21 +1983,23 @@ export class SoloMargin extends SmartContract {
     return result[0].toBoolean();
   }
 
-  getRiskParams(): EthereumTuple {
+  getRiskParams(): SoloMargin__getRiskParamsResultValue0Struct {
     let result = super.call("getRiskParams", []);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getRiskParamsResultValue0Struct;
   }
 
-  getMinBorrowedValue(): EthereumTuple {
+  getMinBorrowedValue(): SoloMargin__getMinBorrowedValueResultValue0Struct {
     let result = super.call("getMinBorrowedValue", []);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getMinBorrowedValueResultValue0Struct;
   }
 
-  getMarketPrice(marketId: BigInt): EthereumTuple {
+  getMarketPrice(
+    marketId: BigInt
+  ): SoloMargin__getMarketPriceResultValue0Struct {
     let result = super.call("getMarketPrice", [
       EthereumValue.fromUnsignedBigInt(marketId)
     ]);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getMarketPriceResultValue0Struct;
   }
 
   owner(): Address {
@@ -1557,111 +2012,134 @@ export class SoloMargin extends SmartContract {
     return result[0].toBoolean();
   }
 
+  ownerWithdrawExcessTokens(marketId: BigInt, recipient: Address): BigInt {
+    let result = super.call("ownerWithdrawExcessTokens", [
+      EthereumValue.fromUnsignedBigInt(marketId),
+      EthereumValue.fromAddress(recipient)
+    ]);
+    return result[0].toBigInt();
+  }
+
   getMarketWithInfo(marketId: BigInt): SoloMargin__getMarketWithInfoResult {
     let result = super.call("getMarketWithInfo", [
       EthereumValue.fromUnsignedBigInt(marketId)
     ]);
     return new SoloMargin__getMarketWithInfoResult(
-      result[0].toTuple(),
-      result[1].toTuple(),
-      result[2].toTuple(),
-      result[3].toTuple()
-    );
+      result[0].toTuple() as SoloMargin__getMarketWithInfoResultValue0Struct,
+      result[1].toTuple() as SoloMargin__getMarketWithInfoResultValue1Struct,
+      result[2].toTuple() as SoloMargin__getMarketWithInfoResultValue2Struct,
+      result[3].toTuple() as SoloMargin__getMarketWithInfoResultValue3Struct
+    ) as SoloMargin__getMarketWithInfoResult;
   }
 
-  getLiquidationSpread(): EthereumTuple {
+  getLiquidationSpread(): SoloMargin__getLiquidationSpreadResultValue0Struct {
     let result = super.call("getLiquidationSpread", []);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getLiquidationSpreadResultValue0Struct;
   }
 
-  getAccountWei(account: EthereumTuple, marketId: BigInt): EthereumTuple {
+  getAccountWei(
+    account: SoloMargin__getAccountWeiInputAccountStruct,
+    marketId: BigInt
+  ): SoloMargin__getAccountWeiResultValue0Struct {
     let result = super.call("getAccountWei", [
       EthereumValue.fromTuple(account),
       EthereumValue.fromUnsignedBigInt(marketId)
     ]);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getAccountWeiResultValue0Struct;
   }
 
-  getMarketTotalPar(marketId: BigInt): EthereumTuple {
+  getMarketTotalPar(
+    marketId: BigInt
+  ): SoloMargin__getMarketTotalParResultValue0Struct {
     let result = super.call("getMarketTotalPar", [
       EthereumValue.fromUnsignedBigInt(marketId)
     ]);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getMarketTotalParResultValue0Struct;
   }
 
   getLiquidationSpreadForPair(
     heldMarketId: BigInt,
     owedMarketId: BigInt
-  ): EthereumTuple {
+  ): SoloMargin__getLiquidationSpreadForPairResultValue0Struct {
     let result = super.call("getLiquidationSpreadForPair", [
       EthereumValue.fromUnsignedBigInt(heldMarketId),
       EthereumValue.fromUnsignedBigInt(owedMarketId)
     ]);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getLiquidationSpreadForPairResultValue0Struct;
   }
 
-  getNumExcessTokens(marketId: BigInt): EthereumTuple {
+  getNumExcessTokens(
+    marketId: BigInt
+  ): SoloMargin__getNumExcessTokensResultValue0Struct {
     let result = super.call("getNumExcessTokens", [
       EthereumValue.fromUnsignedBigInt(marketId)
     ]);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getNumExcessTokensResultValue0Struct;
   }
 
-  getMarketCachedIndex(marketId: BigInt): EthereumTuple {
+  getMarketCachedIndex(
+    marketId: BigInt
+  ): SoloMargin__getMarketCachedIndexResultValue0Struct {
     let result = super.call("getMarketCachedIndex", [
       EthereumValue.fromUnsignedBigInt(marketId)
     ]);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getMarketCachedIndexResultValue0Struct;
   }
 
-  getAccountStatus(account: EthereumTuple): i32 {
+  getAccountStatus(
+    account: SoloMargin__getAccountStatusInputAccountStruct
+  ): i32 {
     let result = super.call("getAccountStatus", [
       EthereumValue.fromTuple(account)
     ]);
     return result[0].toI32();
   }
 
-  getEarningsRate(): EthereumTuple {
+  getEarningsRate(): SoloMargin__getEarningsRateResultValue0Struct {
     let result = super.call("getEarningsRate", []);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getEarningsRateResultValue0Struct;
   }
 
-  getRiskLimits(): EthereumTuple {
+  getRiskLimits(): SoloMargin__getRiskLimitsResultValue0Struct {
     let result = super.call("getRiskLimits", []);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getRiskLimitsResultValue0Struct;
   }
 
-  getMarket(marketId: BigInt): EthereumTuple {
+  getMarket(marketId: BigInt): SoloMargin__getMarketResultValue0Struct {
     let result = super.call("getMarket", [
       EthereumValue.fromUnsignedBigInt(marketId)
     ]);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getMarketResultValue0Struct;
   }
 
   getAdjustedAccountValues(
-    account: EthereumTuple
+    account: SoloMargin__getAdjustedAccountValuesInputAccountStruct
   ): SoloMargin__getAdjustedAccountValuesResult {
     let result = super.call("getAdjustedAccountValues", [
       EthereumValue.fromTuple(account)
     ]);
     return new SoloMargin__getAdjustedAccountValuesResult(
-      result[0].toTuple(),
-      result[1].toTuple()
-    );
+      result[0].toTuple() as SoloMargin__getAdjustedAccountValuesResultValue0Struct,
+      result[1].toTuple() as SoloMargin__getAdjustedAccountValuesResultValue1Struct
+    ) as SoloMargin__getAdjustedAccountValuesResult;
   }
 
-  getMarketMarginPremium(marketId: BigInt): EthereumTuple {
+  getMarketMarginPremium(
+    marketId: BigInt
+  ): SoloMargin__getMarketMarginPremiumResultValue0Struct {
     let result = super.call("getMarketMarginPremium", [
       EthereumValue.fromUnsignedBigInt(marketId)
     ]);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getMarketMarginPremiumResultValue0Struct;
   }
 
-  getMarketInterestRate(marketId: BigInt): EthereumTuple {
+  getMarketInterestRate(
+    marketId: BigInt
+  ): SoloMargin__getMarketInterestRateResultValue0Struct {
     let result = super.call("getMarketInterestRate", [
       EthereumValue.fromUnsignedBigInt(marketId)
     ]);
-    return result[0].toTuple();
+    return result[0].toTuple() as SoloMargin__getMarketInterestRateResultValue0Struct;
   }
 }
 

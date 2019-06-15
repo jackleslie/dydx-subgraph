@@ -1,6 +1,6 @@
 specVersion: 0.0.1
 description: Submission for the CoinList + The Graph hackathon
-repository: 'https://github.com/jackleslie/dydx-subgraph'
+repository: https://github.com/jackleslie/dydx-subgraph
 schema:
   file: schema.graphql
 dataSources:
@@ -8,11 +8,11 @@ dataSources:
     name: SoloMargin
     network: mainnet
     source:
-      address: '0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e'
+      address: "0x1E0447b19BB6EcFdAe1e4AE1694b0C3659614e4e"
       abi: SoloMargin
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.3
       language: wasm/assemblyscript
       entities:
         - Market
@@ -22,29 +22,29 @@ dataSources:
         - name: SoloMargin
           file: SoloMargin/abis/SoloMargin.json
       eventHandlers:
-        - event: 'LogIndexUpdate(uint256,(uint96,uint96,uint32))'
+        - event: LogIndexUpdate(indexed uint256,(uint96,uint96,uint32))
           handler: handleLogIndexUpdate
-        - event: 'LogAddMarket(uint256,address)'
+        - event: LogAddMarket(uint256,address)
           handler: handleLogAddMarket
-        - event: >-
-            LogBuy(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
+        - event: LogBuy(indexed
+            address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
           handler: handleLogBuy
-        - event: >-
-            LogSell(address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
+        - event: LogSell(indexed
+            address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),address)
           handler: handleLogSell
-        - event: >-
-            LogLiquidate(address,uint256,address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)))
+        - event: LogLiquidate(indexed address,uint256,indexed
+            address,uint256,uint256,uint256,((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)),((bool,uint256),(bool,uint128)))
           handler: handleLogLiquidate
       file: SoloMargin/SoloMargin.wasm
   - kind: ethereum/contract
     name: Expiry
     network: mainnet
     source:
-      address: '0x0ECE224FBC24D40B446c6a94a142dc41fAe76f2d'
+      address: "0x0ECE224FBC24D40B446c6a94a142dc41fAe76f2d"
       abi: Expiry
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.3
       language: wasm/assemblyscript
       entities:
         - Long
@@ -53,6 +53,6 @@ dataSources:
         - name: Expiry
           file: Expiry/abis/Expiry.json
       eventHandlers:
-        - event: 'ExpirySet(address,uint256,uint256,uint32)'
+        - event: ExpirySet(address,uint256,uint256,uint32)
           handler: handleExpirySet
       file: Expiry/Expiry.wasm

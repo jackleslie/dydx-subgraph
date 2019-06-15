@@ -10,8 +10,8 @@
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 jackleslie/dydx"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "^0.12.0",
-    "@graphprotocol/graph-ts": "^0.12.0"
+    "@graphprotocol/graph-cli": "0.13.3",
+    "@graphprotocol/graph-ts": "0.13.0"
   },
   "repository": "github:jackleslie/dydx-subgraph"
 }

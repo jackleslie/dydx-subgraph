@@ -84,11 +84,36 @@ export class OwnershipTransferred__Params {
   }
 }
 
+export class Expiry__getExpiryInputAccountStruct extends EthereumTuple {
+  get owner(): Address {
+    return this[0].toAddress();
+  }
+
+  get number(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class Expiry__getSpreadAdjustedPricesResultValue0Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
+export class Expiry__getSpreadAdjustedPricesResultValue1Struct extends EthereumTuple {
+  get value(): BigInt {
+    return this[0].toBigInt();
+  }
+}
+
 export class Expiry__getSpreadAdjustedPricesResult {
   value0: EthereumTuple;
   value1: EthereumTuple;
 
-  constructor(value0: EthereumTuple, value1: EthereumTuple) {
+  constructor(
+    value0: Expiry__getSpreadAdjustedPricesResultValue0Struct,
+    value1: Expiry__getSpreadAdjustedPricesResultValue1Struct
+  ) {
     this.value0 = value0;
     this.value1 = value1;
   }
@@ -98,6 +123,74 @@ export class Expiry__getSpreadAdjustedPricesResult {
     map.set("value0", EthereumValue.fromTuple(this.value0));
     map.set("value1", EthereumValue.fromTuple(this.value1));
     return map;
+  }
+}
+
+export class Expiry__getTradeCostResultValue0Struct extends EthereumTuple {
+  get sign(): boolean {
+    return this[0].toBoolean();
+  }
+
+  get denomination(): i32 {
+    return this[1].toI32();
+  }
+
+  get ref(): i32 {
+    return this[2].toI32();
+  }
+
+  get value(): BigInt {
+    return this[3].toBigInt();
+  }
+}
+
+export class Expiry__getTradeCostInputMakerAccountStruct extends EthereumTuple {
+  get owner(): Address {
+    return this[0].toAddress();
+  }
+
+  get number(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class Expiry__getTradeCostInputParam3Struct extends EthereumTuple {
+  get owner(): Address {
+    return this[0].toAddress();
+  }
+
+  get number(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class Expiry__getTradeCostInputOldInputParStruct extends EthereumTuple {
+  get sign(): boolean {
+    return this[0].toBoolean();
+  }
+
+  get value(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class Expiry__getTradeCostInputNewInputParStruct extends EthereumTuple {
+  get sign(): boolean {
+    return this[0].toBoolean();
+  }
+
+  get value(): BigInt {
+    return this[1].toBigInt();
+  }
+}
+
+export class Expiry__getTradeCostInputInputWeiStruct extends EthereumTuple {
+  get sign(): boolean {
+    return this[0].toBoolean();
+  }
+
+  get value(): BigInt {
+    return this[1].toBigInt();
   }
 }
 
@@ -126,7 +219,10 @@ export class Expiry extends SmartContract {
     return result[0].toBigInt();
   }
 
-  getExpiry(account: EthereumTuple, marketId: BigInt): BigInt {
+  getExpiry(
+    account: Expiry__getExpiryInputAccountStruct,
+    marketId: BigInt
+  ): BigInt {
     let result = super.call("getExpiry", [
       EthereumValue.fromTuple(account),
       EthereumValue.fromUnsignedBigInt(marketId)
@@ -145,9 +241,32 @@ export class Expiry extends SmartContract {
       EthereumValue.fromUnsignedBigInt(expiry)
     ]);
     return new Expiry__getSpreadAdjustedPricesResult(
-      result[0].toTuple(),
-      result[1].toTuple()
-    );
+      result[0].toTuple() as Expiry__getSpreadAdjustedPricesResultValue0Struct,
+      result[1].toTuple() as Expiry__getSpreadAdjustedPricesResultValue1Struct
+    ) as Expiry__getSpreadAdjustedPricesResult;
+  }
+
+  getTradeCost(
+    inputMarketId: BigInt,
+    outputMarketId: BigInt,
+    makerAccount: Expiry__getTradeCostInputMakerAccountStruct,
+    param3: Expiry__getTradeCostInputParam3Struct,
+    oldInputPar: Expiry__getTradeCostInputOldInputParStruct,
+    newInputPar: Expiry__getTradeCostInputNewInputParStruct,
+    inputWei: Expiry__getTradeCostInputInputWeiStruct,
+    data: Bytes
+  ): Expiry__getTradeCostResultValue0Struct {
+    let result = super.call("getTradeCost", [
+      EthereumValue.fromUnsignedBigInt(inputMarketId),
+      EthereumValue.fromUnsignedBigInt(outputMarketId),
+      EthereumValue.fromTuple(makerAccount),
+      EthereumValue.fromTuple(param3),
+      EthereumValue.fromTuple(oldInputPar),
+      EthereumValue.fromTuple(newInputPar),
+      EthereumValue.fromTuple(inputWei),
+      EthereumValue.fromBytes(data)
+    ]);
+    return result[0].toTuple() as Expiry__getTradeCostResultValue0Struct;
   }
 }
 

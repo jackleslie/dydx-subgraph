@@ -15,16 +15,16 @@ export function handleLogIndexUpdate(event: LogIndexUpdate): void {
   let entity = Market.load(id);
   entity.lastIndexUpdate = event.params.index.lastUpdate;
   entity.price = contract.getMarketPrice(event.params.market).value;
-  let totalPar = contract.getMarketTotalPar(event.marams.market);
+  let totalPar = contract.getMarketTotalPar(event.params.market);
   entity.borrowed = totalPar.borrow;
   entity.supplied = totalPar.supply;
   let utilization = totalPar.borrow / totalPar.supply;
   entity.utilization = utilization;
-  let borrowInterestRate =
-    0.1 * utilization + 0.1 * utilization ** 2 + 0.8 * utilization ** 5;
-  entity.borrowInterestRate = borrowInterestRate;
-  let supplyInterestRate = 0.85 * (borrowInterestRate * utilization);
-  entity.supplyInterestRate = supplyInterestRate;
+  entity.borrowInterestRate = contract.getMarketInterestRate(
+    event.params.market
+  ).value;
+  // let supplyInterestRate = 0.85 * (borrowInterestRate.value * utilization);
+  // entity.supplyInterestRate = supplyInterestRate;
   entity.save();
 }
 
